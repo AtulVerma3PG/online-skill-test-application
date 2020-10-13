@@ -1,0 +1,27 @@
+#altcontainer {
+  background-color: #fff;
+  font-size: 120%;
+  line-height: 1.7em;
+}
+.radio {
+  padding-left: 50px;
+  text-align: left;
+}
+input[type="checkbox"] {
+  margin-right: 1rem;
+  text-align: left;
+}
+.Countdown-time {
+  font-size: 30px;
+  margin: 1px 0;
+  background-color: aqua;
+  display: inline-block;
+}
+.question {
+  text-align: left;
+}
+.questionaireButton {
+  margin-left: 5%;
+  border: 1px solid black;
+  margin-top: 2%;
+}

@@ -1,0 +1,43 @@
+{
+  "questions": [
+    {
+      "id": 0,
+      "question": "HTML stands for?",
+      "options": [
+        "Hyper Text Markup Language",
+        "High Text Markup Language",
+        "Hyper Tabular Markup Language",
+        "None of these"
+      ],
+      "answer": ["Hyper Text Markup Language"]
+    },
+    {
+      "id": 1,
+      "question": "Markup tags tell the web browser",
+      "options": [
+        "How to organise the page",
+        "How to display the page",
+        "How to display message box on page",
+        "None of these"
+      ],
+      "answer": ["How to display the page"]
+    },
+    {
+      "id": 2,
+      "question": "www is based on which model?",
+      "options": ["Local-server", "Client-server", "3-tier", "None of these"],
+      "answer": ["Client-server"]
+    },
+    {
+      "id": 3,
+      "question": "What are Empty elements and is it valid?",
+      "options": [
+        "No, there is no such terms as Empty Element",
+        "Empty elements are element with no data",
+        "No, it is not valid to use Empty Element",
+        "None of these"
+      ],
+      "answer": ["Empty elements are element with no data"]
+    }
+  ]
+}

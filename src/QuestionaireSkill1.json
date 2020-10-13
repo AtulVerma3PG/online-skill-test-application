@@ -1,0 +1,43 @@
+{
+  "questions": [
+    {
+      "id": 0,
+      "question": "A mathematical-model with a collection of operations defined on that model is called",
+      "options": [
+        "Data Structure",
+        "Abstract Data Type",
+        "Primitive Data Type",
+        "Algorithm"
+      ],
+      "answer": ["Abstract Data Type"]
+    },
+    {
+      "id": 1,
+      "question": "Representation of data structure in memory is known as:",
+      "options": [
+        "Recursive",
+        "Abstract Data Type",
+        "Storage structure",
+        "File structure"
+      ],
+      "answer": ["Abstract Data Type"]
+    },
+    {
+      "id": 2,
+      "question": "The information about an array that is used in a program will be stored in",
+      "options": [
+        "symbol table",
+        "activation record",
+        "system table",
+        "dope vector"
+      ],
+      "answer": ["dope vector"]
+    },
+    {
+      "id": 3,
+      "question": "Which of the following abstract data types can be used to represent a many to many relation?",
+      "options": ["Tree", "Plex", "Graph", "Array"],
+      "answer": ["Plex", "Graph"]
+    }
+  ]
+}
