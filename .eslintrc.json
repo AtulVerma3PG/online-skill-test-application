@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "es6": true,
@@ -23,6 +24,17 @@
     "quotes": ["error", "double"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-named-as-default": 0,
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "jsx-a11y/label-has-for": [ 2, {
+      "required": {
+          "some": [ "nesting", "id" ]
+      }
+    }],
+    "camelcase": [
+      "error", {
+        "ignoreDestructuring": true,
+        "allow": [ "^UNSAFE_" ]
+      }
+    ]
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DropdownButton, Dropdown } from "react-bootstrap";
@@ -34,7 +35,6 @@ class HomePage extends Component {
         state: this.state,
       });
     };
-    console.log(this.props);
     this.setState({
       firstName: _.get(this.props, "location.state.firstName"),
       lastName: _.get(this.props, "location.state.lastName"),
@@ -103,7 +103,7 @@ class HomePage extends Component {
             onSelect={this.handleSelect.bind(this)}
           >
             {skillLevels.map((opt, i) => (
-              <Dropdown.Item as="button" eventKey={opt} key={i}>
+              <Dropdown.Item as="button" eventKey={opt} key={opt}>
                 {opt}
               </Dropdown.Item>
             ))}

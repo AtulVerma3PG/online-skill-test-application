@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
@@ -36,6 +37,40 @@ class Questionaire extends Component {
   }
 
   /**
+   * set Questionaire according to the skill level
+   */
+  UNSAFE_componentWillMount() {
+    this.setState({
+      firstName: _.get(this.props, "location.state.firstName"),
+      lastName: _.get(this.props, "location.state.lastName"),
+      email: _.get(this.props, "location.state.email"),
+      gender: _.get(this.props, "location.state.gender"),
+      password: _.get(this.props, "location.state.password"),
+    });
+    const level = _.get(this.props, "location.state.skillLevel");
+
+    let questionsd = [];
+    if (level === skillLevels[0]) {
+      questionsd = skill0Questionaire.questions;
+    } else if (level === skillLevels[1]) {
+      questionsd = skill1Questionaire.questions;
+    } else {
+      questionsd = skill2Questionaire.questions;
+    }
+
+    this.setState({
+      skillLevel: level,
+      questionData: questionsd,
+      questionCount: questionsd.length,
+    });
+    this.timer = setInterval(() => {
+      const newCount = this.state.quizTime - 1;
+      this.setState({ quizTime: newCount >= 0 ? newCount : 0 });
+      this.updateLocalStorage();
+    }, 1000);
+  }
+
+  /**
    * Handle back button click
    */
   componentDidMount() {
@@ -45,62 +80,6 @@ class Questionaire extends Component {
         state: { ...this.state },
       });
     };
-  }
-
-  /**
-   * set Questionaire according to the skill level
-   */
-  componentWillMount() {
-    console.log(this.props.location);
-    console.log("state : ", this.state);
-    this.setState({
-      firstName: _.get(this.props, "location.state.firstName"),
-      lastName: _.get(this.props, "location.state.lastName"),
-      email: _.get(this.props, "location.state.email"),
-      gender: _.get(this.props, "location.state.gender"),
-      password: _.get(this.props, "location.state.password"),
-    });
-    const level = _.get(this.props, "location.state.skillLevel");
-    if (level === skillLevels[0]) {
-      this.setState({
-        questionData: skill0Questionaire.questions,
-      });
-    } else if (level === skillLevels[1]) {
-      this.setState({
-        questionData: skill1Questionaire.questions,
-      });
-    }
-    if (level === skillLevels[2]) {
-      this.setState({
-        questionData: skill2Questionaire.questions,
-      });
-    }
-    const questionsd =
-      level === skillLevels[0]
-        ? skill0Questionaire.questions
-        : level === skillLevels[1]
-        ? skill1Questionaire.questions
-        : skill2Questionaire.questions;
-
-    this.setState({
-      skillLevel: level,
-      questionData: questionsd,
-      questionCount: questionsd.length,
-    });
-    console.log(this.state);
-
-    this.timer = setInterval(() => {
-      const newCount = this.state.quizTime - 1;
-      this.setState({ quizTime: newCount >= 0 ? newCount : 0 });
-      this.updateLocalStorage();
-    }, 1000);
-  }
-
-  /**
-   * Update Local storage on state change
-   */
-  updateLocalStorage() {
-    localStorage.setItem("state", JSON.stringify(this.state));
   }
 
   /**
@@ -117,9 +96,8 @@ class Questionaire extends Component {
    * Display next question on questionaire
    */
   nextQuestion = () => {
-    const isAnswerCorrect =
-      JSON.stringify(this.state.currentResponse) ==
-      JSON.stringify(this.state.questionData[this.state.questionIndex].answer);
+    const isAnswerCorrect = JSON.stringify(this.state.currentResponse)
+      == JSON.stringify(this.state.questionData[this.state.questionIndex].answer);
     const isQuestionAttempted = this.state.currentResponse.length > 0;
     this.state.candidateResponses.push({
       id: this.state.questionIndex,
@@ -129,15 +107,13 @@ class Questionaire extends Component {
       IsAnswerCorrect: isAnswerCorrect,
       IsAttempted: isQuestionAttempted,
     });
-
-    console.log(this.state.candidateResponses);
-
+    const questIndex = this.state.questionIndex + 1;
     this.clearResponse();
     if (this.state.questionIndex == this.state.questionCount - 1) {
       this.submitTest();
     } else {
       this.setState({
-        questionIndex: this.state.questionIndex + 1,
+        questionIndex: questIndex,
       });
     }
     this.updateLocalStorage();
@@ -149,7 +125,6 @@ class Questionaire extends Component {
    * @param {string} event choice of question selected
    */
   choiceSelected = (event) => {
-    console.log(event.target.value);
     if (this.state.currentResponse.includes(event.target.value)) {
       this.state.currentResponse.pop(event.target.value);
     }
@@ -189,18 +164,17 @@ class Questionaire extends Component {
    * Submit candidate Responses
    */
   submitTest = () => {
-    const correctAnswers = this.state.candidateResponses.filter(
-      (c) => c.IsAnswerCorrect == true
+    const { candidateResponses } = this.state;
+    const correctAnswers = candidateResponses.filter(
+      (c) => c.IsAnswerCorrect == true,
     ).length;
-    const questionsAttempted = this.state.candidateResponses.filter(
-      (c) => c.IsAttempted == true
+    const questionsAttempt = candidateResponses.filter(
+      (c) => c.IsAttempted == true,
     ).length;
-    console.log(correctAnswers);
-    console.log(questionsAttempted);
     this.setState(
       {
         candidateScore: correctAnswers,
-        questionsAttempted,
+        questionsAttempted: questionsAttempt,
         IsQuizSubmitted: true,
       },
       () => {
@@ -211,9 +185,8 @@ class Questionaire extends Component {
           pathname: "/SubmitTest",
           state: { ...this.state },
         });
-      }
+      },
     );
-    console.log(this.state);
     this.updateLocalStorage();
   };
 
@@ -221,12 +194,20 @@ class Questionaire extends Component {
    * Display Previous qestion in the questionaire
    */
   previousQuestion = () => {
-    this.state.candidateResponses.splice(this.state.questionIndex, 1);
+    const { questionIndex } = this.state;
+    this.state.candidateResponses.splice(questionIndex, 1);
     this.setState({
-      questionIndex: this.state.questionIndex - 1,
+      questionIndex: questionIndex - 1,
     });
     this.updateLocalStorage();
   };
+
+  /**
+   * Update Local storage on state change
+   */
+  updateLocalStorage() {
+    localStorage.setItem("state", JSON.stringify(this.state));
+  }
 
   render() {
     return (
@@ -253,8 +234,8 @@ class Questionaire extends Component {
 }
 
 Questionaire.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
 };
 
 export default Questionaire;

@@ -1,6 +1,6 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import "./Css/Page.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -45,7 +45,7 @@ class RegistrationForm extends Component {
           pathname: "/Home",
           state: { ...this.state },
         });
-      }
+      },
     );
   };
 
@@ -69,7 +69,7 @@ class RegistrationForm extends Component {
    * @param {string} value fields value
    */
   validateField(fieldName, value) {
-    const fieldValidationErrors = this.state.formErrors;
+    const { formErrors } = this.state;
     let { emailValid } = this.state;
     let { passwordValid } = this.state;
     let { firstNameValid } = this.state;
@@ -79,68 +79,55 @@ class RegistrationForm extends Component {
     switch (fieldName) {
       case "email":
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid ? "" : " is invalid";
+        formErrors.email = emailValid ? "" : " is invalid";
         break;
       case "password":
         passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? "" : " is too short";
+        formErrors.password = passwordValid ? "" : " is too short";
         break;
       case "firstName":
         firstNameValid = value.length >= 3;
-        fieldValidationErrors.firstName = firstNameValid ? "" : " is too short";
+        formErrors.firstName = firstNameValid ? "" : " is too short";
         break;
       case "lastName":
         lastNameValid = value.length >= 3;
-        fieldValidationErrors.lastName = lastNameValid ? "" : " is too short";
+        formErrors.lastName = lastNameValid ? "" : " is too short";
         break;
       case "gender":
-        console.log(value);
         genderValid = value.length >= 4 && value.length <= 6;
-        fieldValidationErrors.gender = genderValid ? "" : " not selected";
+        formErrors.gender = genderValid ? "" : " not selected";
         break;
       default:
         break;
     }
     this.setState(
       {
-        formErrors: fieldValidationErrors,
+        formErrors,
         emailValid,
         passwordValid,
         lastNameValid,
         firstNameValid,
         genderValid,
+      }, () => {
+        if (this.state.emailValid
+          && this.state.passwordValid
+          && this.state.firstNameValid
+          && this.state.lastNameValid
+          && this.state.genderValid
+        ) {
+          this.setState({
+            formValid: true,
+          });
+        } else {
+          this.setState({
+            formValid: false,
+          });
+        }
       },
-      this.validateForm
     );
   }
 
-  /**
-   * Store Validity of user Input
-   */
-  validateForm() {
-    this.setState({
-      formValid:
-        this.state.emailValid &&
-        this.state.passwordValid &&
-        this.state.firstNameValid &&
-        this.state.lastNameValid &&
-        this.state.genderValid,
-    });
-    console.log(this.state);
-  }
-
-  /**
-   *Show Error message
-   *
-   * @param {string} error
-   * @returns Error message
-   */
-  errorClass(error) {
-    return error.length === 0 ? "" : "has-error";
-  }
-
   render() {
-    console.log(this.state.formErrors);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -153,63 +140,70 @@ class RegistrationForm extends Component {
                     {fieldName} {this.state.formErrors[fieldName]}
                   </p>
                 );
-              } else {
-                return "";
               }
+              return "";
             })}
           </div>
           <div>
-            <label>FirstName :</label>
-            <input
+            <label htmlFor="firstName">FirstName : <input
               type="text"
               name="firstName"
+              id="firstName"
               value={this.state.firstName}
               onChange={this.handleUserInput}
               placeholder="First Name"
             />
+            </label>
           </div>
           <div>
-            <label>LastName :</label>
-            <input
+            <label htmlFor="lastName">LastName :<input
               type="text"
               name="lastName"
+              id="lastName"
               value={this.state.lastName}
               onChange={this.handleUserInput}
               placeholder="Last Name"
             />
+            </label>
           </div>
           <div>
-            <label>Email address :</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleUserInput}
-            />
+            <label htmlFor="email">Email address :
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.handleUserInput}
+              />
+            </label>
           </div>
           <div>
-            <label>Password :</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleUserInput}
-              placeholder="Password"
-            />
+            <label htmlFor="password">Password :
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={this.state.password}
+                onChange={this.handleUserInput}
+                placeholder="Password"
+              />
+            </label>
           </div>
           <div>
-            <label>Gender : </label>
-            <select
-              onChange={this.handleUserInput}
-              name="gender"
-              className="select"
-              defaultValue="Select Gender"
-            >
-              <option defaultValue>Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            <label htmlFor="gender">Gender :
+              <select
+                onChange={this.handleUserInput}
+                name="gender"
+                id="gender"
+                className="select"
+                defaultValue="Select Gender"
+              >
+                <option defaultValue>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </label>
           </div>
           <input
             type="submit"
@@ -223,6 +217,7 @@ class RegistrationForm extends Component {
 }
 
 RegistrationForm.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object.isRequired,
 };
 export default RegistrationForm;
