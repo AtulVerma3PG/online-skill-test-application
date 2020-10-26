@@ -1,6 +1,4 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import _ from "lodash";
 import Question from "./Question";
 import skill0Questionaire from "../Questionaire.json";
@@ -64,6 +62,7 @@ class Questionaire extends Component {
       questionCount: questionsd.length,
     });
     this.timer = setInterval(() => {
+      // eslint-disable-next-line react/destructuring-assignment
       const newCount = this.state.quizTime - 1;
       this.setState({ quizTime: newCount >= 0 ? newCount : 0 });
       this.updateLocalStorage();
@@ -74,8 +73,9 @@ class Questionaire extends Component {
    * Handle back button click
    */
   componentDidMount() {
+    const { history } = this.props;
     window.onpopstate = () => {
-      this.props.history.push({
+      history.push({
         pathname: "/LandingPage",
         state: { ...this.state },
       });
@@ -96,20 +96,23 @@ class Questionaire extends Component {
    * Display next question on questionaire
    */
   nextQuestion = () => {
-    const isAnswerCorrect = JSON.stringify(this.state.currentResponse)
-      == JSON.stringify(this.state.questionData[this.state.questionIndex].answer);
-    const isQuestionAttempted = this.state.currentResponse.length > 0;
-    this.state.candidateResponses.push({
-      id: this.state.questionIndex,
-      Question: this.state.questionData[this.state.questionIndex].question,
-      Response: this.state.currentResponse,
-      Answer: this.state.questionData[this.state.questionIndex].answer,
+    const {
+      currentResponse, questionIndex, questionData, candidateResponses, questionCount,
+    } = this.state;
+    const isAnswerCorrect = JSON.stringify(currentResponse)
+      == JSON.stringify(questionData[questionIndex].answer);
+    const isQuestionAttempted = currentResponse.length > 0;
+    candidateResponses.push({
+      id: questionIndex,
+      Question: questionData[questionIndex].question,
+      Response: currentResponse,
+      Answer: questionData[questionIndex].answer,
       IsAnswerCorrect: isAnswerCorrect,
       IsAttempted: isQuestionAttempted,
     });
-    const questIndex = this.state.questionIndex + 1;
+    const questIndex = questionIndex + 1;
     this.clearResponse();
-    if (this.state.questionIndex == this.state.questionCount - 1) {
+    if (questionIndex == questionCount - 1) {
       this.submitTest();
     } else {
       this.setState({
@@ -125,10 +128,11 @@ class Questionaire extends Component {
    * @param {string} event choice of question selected
    */
   choiceSelected = (event) => {
-    if (this.state.currentResponse.includes(event.target.value)) {
-      this.state.currentResponse.pop(event.target.value);
+    const { currentResponse } = this.state;
+    if (currentResponse.includes(event.target.value)) {
+      currentResponse.pop(event.target.value);
     }
-    this.state.currentResponse.push(event.target.value);
+    currentResponse.push(event.target.value);
     this.updateLocalStorage();
   };
 
@@ -146,7 +150,8 @@ class Questionaire extends Component {
    * Download JSON file of the Candidate Responses
    */
   downloadFile = async () => {
-    const myData = this.state.candidateResponses;
+    const { candidateResponses } = this.state;
+    const myData = candidateResponses;
     const fileName = "CandidateResponses";
     const json = JSON.stringify(myData);
     const blob = new Blob([json], { type: "application/json" });
@@ -165,6 +170,7 @@ class Questionaire extends Component {
    */
   submitTest = () => {
     const { candidateResponses } = this.state;
+    const { history } = this.props;
     const correctAnswers = candidateResponses.filter(
       (c) => c.IsAnswerCorrect == true,
     ).length;
@@ -181,7 +187,7 @@ class Questionaire extends Component {
         this.resetTimer();
         this.downloadFile();
 
-        this.props.history.push({
+        history.push({
           pathname: "/SubmitTest",
           state: { ...this.state },
         });
@@ -194,8 +200,8 @@ class Questionaire extends Component {
    * Display Previous qestion in the questionaire
    */
   previousQuestion = () => {
-    const { questionIndex } = this.state;
-    this.state.candidateResponses.splice(questionIndex, 1);
+    const { questionIndex, candidateResponses } = this.state;
+    candidateResponses.splice(questionIndex, 1);
     this.setState({
       questionIndex: questionIndex - 1,
     });
@@ -210,32 +216,33 @@ class Questionaire extends Component {
   }
 
   render() {
+    const {
+      questionIndex, questionData, questionCount, IsQuizSubmitted, quizTime, currentResponse,
+    } = this.state;
     return (
-      this.state.isFalseLogin == false && (
-        <Question
-          questionId={this.state.questionIndex}
-          questionText={
-            this.state.questionData[this.state.questionIndex].question
+      <Question
+        questionId={questionIndex}
+        questionText={
+            questionData[questionIndex].question
           }
-          options={this.state.questionData[this.state.questionIndex].options}
-          questionCount={this.state.questionCount}
-          onNext={this.nextQuestion}
-          onPrevious={this.previousQuestion}
-          onChange={this.choiceSelected}
-          submitTest={this.submitTest}
-          answer={this.state.currentResponse}
-          clearResponse={this.clearResponse}
-          isQuizSubmitted={this.state.IsQuizSubmitted}
-          quizTime={this.state.quizTime}
-        />
-      )
+        options={questionData[questionIndex].options}
+        questionCount={questionCount}
+        onNext={this.nextQuestion}
+        onPrevious={this.previousQuestion}
+        onChange={this.choiceSelected}
+        submitTest={this.submitTest}
+        answer={currentResponse}
+        clearResponse={this.clearResponse}
+        isQuizSubmitted={IsQuizSubmitted}
+        quizTime={quizTime}
+      />
+
     );
   }
 }
 
 Questionaire.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  history: PropTypes.object.isRequired,
+  history: Object.isRequired,
 };
 
 export default Questionaire;

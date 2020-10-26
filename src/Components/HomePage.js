@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import _ from "lodash";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,10 +25,9 @@ class HomePage extends Component {
    * handling back button click and updating the state for the registration detailsS
    */
   componentDidMount() {
-    // history.pushState(null, null, this.props.location.href);
-    // window.onpopstate = window.history.go(1);
+    const { history } = this.props;
     window.onpopstate = () => {
-      this.props.history.push({
+      history.push({
         pathname: "/LandingPage",
         state: this.state,
       });
@@ -49,8 +46,9 @@ class HomePage extends Component {
    * Clear local storage and start questionaire
    */
   startTestHandler = () => {
+    const { history } = this.props;
     localStorage.clear();
-    this.props.history.push({
+    history.push({
       pathname: "/Questionaire",
       state: { ...this.state },
     });
@@ -62,11 +60,12 @@ class HomePage extends Component {
    * @param {string} eventKey Skill level selected
    * @param {*} event
    */
-  handleSelect(eventKey, event) {
+  handleSelect(eventKey) {
     this.setState({ skillLevel: eventKey, IsLevelFilled: true });
   }
 
   render() {
+    const { IsLevelFilled, skillLevel } = this.state;
     return (
       <div>
         <div>
@@ -98,11 +97,11 @@ class HomePage extends Component {
 
         <div>
           <DropdownButton
-            title={this.state.skillLevel}
+            title={skillLevel}
             id="document-type"
-            onSelect={this.handleSelect.bind(this)}
+            onSelect={(eventKey) => this.handleSelect(eventKey)}
           >
-            {skillLevels.map((opt, i) => (
+            {skillLevels.map((opt) => (
               <Dropdown.Item as="button" eventKey={opt} key={opt}>
                 {opt}
               </Dropdown.Item>
@@ -111,7 +110,7 @@ class HomePage extends Component {
         </div>
         <br />
         <br />
-        {this.state.IsLevelFilled && (
+        {IsLevelFilled && (
           <div>
             <button
               type="button"
@@ -128,7 +127,7 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: Object.isRequired,
 };
 
 export default HomePage;

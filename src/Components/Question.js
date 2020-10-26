@@ -10,12 +10,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
  * @returns {object} question to be displayed
  */
 const question = (props) => {
-  let second = props.quizTime % 60;
-  let minute = Math.floor(props.quizTime / 60);
+  const { quizTime } = props;
+  let second = quizTime % 60;
+  let minute = Math.floor(quizTime / 60);
   minute = minute.toString().length === 1 ? `0${minute}` : minute;
   second = second.toString().length === 1 ? `0${second}` : second;
   const { submitTest } = props;
-
   /**
    * Submit test on timer finish
    */

@@ -1,6 +1,4 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import "./Css/Page.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -36,12 +34,13 @@ class RegistrationForm extends Component {
    * Handle registration form submit
    */
   handleSubmit = () => {
+    const { history } = this.props;
     this.setState(
       {
         isRegistered: true,
       },
       () => {
-        this.props.history.push({
+        history.push({
           pathname: "/Home",
           state: { ...this.state },
         });
@@ -70,11 +69,9 @@ class RegistrationForm extends Component {
    */
   validateField(fieldName, value) {
     const { formErrors } = this.state;
-    let { emailValid } = this.state;
-    let { passwordValid } = this.state;
-    let { firstNameValid } = this.state;
-    let { lastNameValid } = this.state;
-    let { genderValid } = this.state;
+    let {
+      emailValid, passwordValid, firstNameValid, lastNameValid, genderValid,
+    } = this.state;
 
     switch (fieldName) {
       case "email":
@@ -109,11 +106,11 @@ class RegistrationForm extends Component {
         firstNameValid,
         genderValid,
       }, () => {
-        if (this.state.emailValid
-          && this.state.passwordValid
-          && this.state.firstNameValid
-          && this.state.lastNameValid
-          && this.state.genderValid
+        if (emailValid
+          && passwordValid
+          && firstNameValid
+          && lastNameValid
+          && genderValid
         ) {
           this.setState({
             formValid: true,
@@ -128,16 +125,19 @@ class RegistrationForm extends Component {
   }
 
   render() {
+    const {
+      formErrors, firstName, lastName, password, email, formValid,
+    } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <h3>User Registration</h3>
           <div className="panel panel-default">
-            {Object.keys(this.state.formErrors).map((fieldName) => {
-              if (this.state.formErrors[fieldName].length > 0) {
+            {Object.keys(formErrors).map((fieldName) => {
+              if (formErrors[fieldName].length > 0) {
                 return (
                   <p key={fieldName}>
-                    {fieldName} {this.state.formErrors[fieldName]}
+                    {fieldName} {formErrors[fieldName]}
                   </p>
                 );
               }
@@ -149,7 +149,7 @@ class RegistrationForm extends Component {
               type="text"
               name="firstName"
               id="firstName"
-              value={this.state.firstName}
+              value={firstName}
               onChange={this.handleUserInput}
               placeholder="First Name"
             />
@@ -160,7 +160,7 @@ class RegistrationForm extends Component {
               type="text"
               name="lastName"
               id="lastName"
-              value={this.state.lastName}
+              value={lastName}
               onChange={this.handleUserInput}
               placeholder="Last Name"
             />
@@ -173,7 +173,7 @@ class RegistrationForm extends Component {
                 name="email"
                 id="email"
                 placeholder="Email"
-                value={this.state.email}
+                value={email}
                 onChange={this.handleUserInput}
               />
             </label>
@@ -184,7 +184,7 @@ class RegistrationForm extends Component {
                 type="password"
                 name="password"
                 id="password"
-                value={this.state.password}
+                value={password}
                 onChange={this.handleUserInput}
                 placeholder="Password"
               />
@@ -208,7 +208,7 @@ class RegistrationForm extends Component {
           <input
             type="submit"
             value="Submit"
-            disabled={!this.state.formValid}
+            disabled={!formValid}
           />
         </form>
       </div>
@@ -217,7 +217,6 @@ class RegistrationForm extends Component {
 }
 
 RegistrationForm.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  history: PropTypes.object.isRequired,
+  history: Object.isRequired,
 };
 export default RegistrationForm;
