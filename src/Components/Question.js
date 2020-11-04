@@ -33,36 +33,34 @@ const question = (props) => {
         {" "}
         {second}
       </div>
-      <>
-        <h3 id="question">
-          Question
-          {" "}
-          {props.questionId}
-          {" "}
-          :
-          {" "}
-          {props.questionText}
-        </h3>
-        <div id="altcontainer">
-          <div className="radio">
-            {props.options.map((choice) => (
-              <div key={choice}>
-                <label className="radio-inline" htmlFor="{choice}">
-                  <input
-                    type="checkbox"
-                    value={choice}
-                    key={choice}
-                    checked={props.answer.includes(choice)}
-                    onChange={(e) => props.onChange(e)}
-                  />
-                  {choice}
-                </label>
-                <br />
-              </div>
-            ))}
-          </div>
+      <h3 id="question">
+        Question
+        {" "}
+        {props.questionId + 1}
+        {" "}
+        :
+        {" "}
+        {props.questionText}
+      </h3>
+      <div id="altcontainer">
+        <div className="radio">
+          {props.options.map((choice) => (
+            <div key={choice}>
+              <label className="radio-inline" htmlFor="{choice}">
+                <input
+                  type="checkbox"
+                  value={choice}
+                  key={choice}
+                  checked={props.answer.includes(choice)}
+                  onChange={(e) => props.onChange(e)}
+                />
+                {choice}
+              </label>
+              <br />
+            </div>
+          ))}
         </div>
-      </>
+      </div>
       {props.questionId !== 0 && (
         <Button
           variant="info"

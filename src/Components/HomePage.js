@@ -10,6 +10,7 @@ class HomePage extends Component {
     super(props);
     this.state = {
       IsLevelFilled: false,
+      IsAggreed: false,
       IsQuizSubmitted: false,
       firstName: "",
       lastName: "",
@@ -64,8 +65,19 @@ class HomePage extends Component {
     this.setState({ skillLevel: eventKey, IsLevelFilled: true });
   }
 
+  /**
+   * Handle skill level selected
+   *
+   * @param {string} eventKey Skill level selected
+   * @param {*} event
+   */
+  handleAgreement() {
+    const { IsAggreed } = this.state;
+    this.setState({ IsAggreed: !IsAggreed });
+  }
+
   render() {
-    const { IsLevelFilled, skillLevel } = this.state;
+    const { IsLevelFilled, skillLevel, IsAggreed } = this.state;
     return (
       <div>
         <div>
@@ -98,7 +110,7 @@ class HomePage extends Component {
         <div>
           <DropdownButton
             title={skillLevel}
-            id="document-type"
+            id="selectLevel"
             onSelect={(eventKey) => this.handleSelect(eventKey)}
           >
             {skillLevels.map((opt) => (
@@ -107,10 +119,25 @@ class HomePage extends Component {
               </Dropdown.Item>
             ))}
           </DropdownButton>
+          <div className="checkbox">
+            <label
+              className="checkbox-inline"
+              htmlFor="{choice}"
+              style={{ fontWeight: "bold" }}
+            >
+              <input
+                type="checkbox"
+                value="agreement"
+                onChange={() => this.handleAgreement()}
+              />
+              I agree to the Terms and Conditions
+            </label>
+            <br />
+          </div>
         </div>
         <br />
         <br />
-        {IsLevelFilled && (
+        {IsLevelFilled && IsAggreed && (
           <div>
             <button
               type="button"

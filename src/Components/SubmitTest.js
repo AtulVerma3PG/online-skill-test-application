@@ -4,21 +4,24 @@ import React from "react";
  *
  * @param {object} props candidate Test details
  */
-const SubmitTest = ({ location }) => (
-  <div>
-    <h4>Thanks for you Response.</h4>
-    <p>
-      Name : {location.state.firstName} {location.state.lastName}
-      <br />
-      Email : {location.state.email}
-      <br />
-      Questions Attempted : {location.state.questionsAttempted} /{" "}
-      {location.state.questionCount}
-      <br />
-      Score : {location.state.candidateScore} / {location.state.questionCount}
-    </p>
-  </div>
-);
+const SubmitTest = ({ location }) => {
+  const { state } = location;
+  return (
+    <div>
+      <h4>Thanks for you Response.</h4>
+      <p>
+        Name : {state.firstName} {state.lastName}
+        <br />
+        Email : {state.email}
+        <br />
+        Questions Attempted : {state.questionsAttempted} /{" "}
+        {state.questionCount}
+        <br />
+        Score : {state.candidateScore} / {state.questionCount}
+      </p>
+    </div>
+  );
+};
 
 SubmitTest.propTypes = {
   location: Object.isRequired,

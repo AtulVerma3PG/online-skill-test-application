@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage Snapshot test 1`] = `
+<div>
+  <div>
+    <h1>
+      Skill Examination
+    </h1>
+    <br />
+    <h2>
+      Examination Instructions
+    </h2>
+    <ul
+      className="list-group"
+    >
+      <li
+        className="list-group-item"
+      >
+        A start button would start the test with specific time
+      </li>
+      <li
+        className="list-group-item"
+      >
+        Candidates can view one question per page and can navigate next/previous.
+      </li>
+      <li
+        className="list-group-item"
+      >
+        Question may be a single or multiple choice.
+      </li>
+      <li
+        className="list-group-item"
+      >
+        Test would finish automatically after the timer ends.
+      </li>
+      <li
+        className="list-group-item"
+      >
+        The time limit for the test is 10 minutes.
+      </li>
+    </ul>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div>
+    <div
+      className="dropdown"
+      onKeyDown={[Function]}
+    >
+      <button
+        aria-expanded={false}
+        aria-haspopup={true}
+        className="dropdown-toggle btn btn-primary"
+        disabled={false}
+        id="selectLevel"
+        onClick={[Function]}
+        type="button"
+      >
+        Select the skill level
+      </button>
+    </div>
+    <div
+      className="checkbox"
+    >
+      <label
+        className="checkbox-inline"
+        htmlFor="{choice}"
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <input
+          onChange={[Function]}
+          type="checkbox"
+          value="agreement"
+        />
+        I agree to the Terms and Conditions
+      </label>
+      <br />
+    </div>
+  </div>
+  <br />
+  <br />
+</div>
+`;
