@@ -12,7 +12,7 @@ const SignIn = (props) => {
     <div>
       <h1>Sign In</h1>
       <button id="home" type="button" onClick={openHome} className="btn btn-primary btn-lg">
-        Registeration
+        Registration
       </button>
     </div>
   );
