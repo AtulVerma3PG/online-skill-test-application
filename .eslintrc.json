@@ -35,6 +35,6 @@
         "ignoreDestructuring": true,
         "allow": [ "^UNSAFE_" ]
       }
-    ]
+    ],"react/jsx-props-no-spreading": "off"
   }
 }

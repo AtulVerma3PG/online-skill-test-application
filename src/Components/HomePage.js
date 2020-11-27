@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
-import _ from "lodash";
+import { testActive } from "./utils/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const skillLevels = ["Level 1", "Level 2", "Level 3"];
@@ -26,34 +26,16 @@ class HomePage extends Component {
    * handling back button click and updating the state for the registration detailsS
    */
   componentDidMount() {
-    const { history } = this.props;
-    window.onpopstate = () => {
-      history.push({
-        pathname: "/LandingPage",
-        state: this.state,
-      });
-    };
+    const userData = JSON.parse(localStorage.getItem("userDetails"));
     this.setState({
-      firstName: _.get(this.props, "location.state.firstName"),
-      lastName: _.get(this.props, "location.state.lastName"),
-      password: _.get(this.props, "location.state.password"),
-      email: _.get(this.props, "location.state.email"),
-      gender: _.get(this.props, "location.state.gender"),
-      isRegistered: _.get(this.props, "location.state.isRegistered"),
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      password: userData.password,
+      email: userData.email,
+      gender: userData.gender,
+      isRegistered: userData.isRegistered,
     });
   }
-
-  /**
-   * Clear local storage and start questionaire
-   */
-  startTestHandler = () => {
-    const { history } = this.props;
-    localStorage.clear();
-    history.push({
-      pathname: "/Questionaire",
-      state: { ...this.state },
-    });
-  };
 
   /**
    * Handle skill level selected
@@ -75,6 +57,19 @@ class HomePage extends Component {
     const { IsAggreed } = this.state;
     this.setState({ IsAggreed: !IsAggreed });
   }
+
+  /**
+   * Clear local storage and start questionaire
+   */
+  startTestHandler = () => {
+    const { history } = this.props;
+    localStorage.removeItem("state");
+    testActive();
+    history.push({
+      pathname: "/Questionaire",
+      state: { ...this.state },
+    });
+  };
 
   render() {
     const { IsLevelFilled, skillLevel, IsAggreed } = this.state;

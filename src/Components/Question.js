@@ -1,6 +1,6 @@
 import React from "react";
 import "./Css/Question.css";
-import { Button } from "react-bootstrap";
+import { Button, Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 /**
  * This function is responsible to show the questions on online test
@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
  * @returns {object} question to be displayed
  */
 const question = (props) => {
-  const { quizTime } = props;
+  const { quizTime, questionCount, questionId } = props;
   let second = quizTime % 60;
   let minute = Math.floor(quizTime / 60);
   minute = minute.toString().length === 1 ? `0${minute}` : minute;
@@ -21,6 +21,19 @@ const question = (props) => {
    */
   if (second === "00" && minute === "00") {
     submitTest();
+  }
+  const items = [];
+  for (let number = 1; number <= questionCount; number += 1) {
+    // Adding Pagination
+    items.push(
+      <Nav.Link
+        key={number}
+        active={number === questionId + 1}
+        onClick={() => props.setQuestion(number)}
+      >{number}
+      </Nav.Link>
+      ,
+    );
   }
   return (
     <div className="container">
@@ -51,7 +64,7 @@ const question = (props) => {
                   type="checkbox"
                   value={choice}
                   key={choice}
-                  checked={props.answer.includes(choice)}
+                  checked={props.answer.length > 0 ? props.answer.includes(choice) : false}
                   onChange={(e) => props.onChange(e)}
                 />
                 {choice}
@@ -88,16 +101,20 @@ const question = (props) => {
           Next
         </Button>
       )}
-      {props.questionId === props.questionCount - 1 && (
-        <Button
-          variant="info"
-          id="submitTest"
-          onClick={props.onNext}
-          className="questionaireButton"
-        >
-          Submit Test
-        </Button>
-      )}
+      <Button
+        variant="info"
+        id="submitTest"
+        onClick={props.submitTest}
+        className="questionaireButton"
+      >
+        Submit Test
+      </Button>
+      <Navbar>
+        <Navbar.Brand href="#home">Go To Question : </Navbar.Brand>
+        <Nav className="mr-auto">
+          {items}
+        </Nav>
+      </Navbar>
     </div>
   );
 };

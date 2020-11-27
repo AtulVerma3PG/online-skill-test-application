@@ -1,4 +1,5 @@
 import React from "react";
+import { logout } from "./utils";
 /**
  *Show Candidate Score with details
  *
@@ -6,6 +7,8 @@ import React from "react";
  */
 const SubmitTest = ({ location }) => {
   const { state } = location;
+  console.log(state);
+  logout();
   return (
     <div>
       <h4>Thanks for you Response.</h4>

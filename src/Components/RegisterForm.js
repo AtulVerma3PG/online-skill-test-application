@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { isLogin, login } from "./utils";
 import "./Css/Page.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);
-
+    if (isLogin()) {
+      props.history.push("/Home");
+    }
     this.state = {
       firstName: "",
       lastName: "",
@@ -40,6 +43,8 @@ class RegistrationForm extends Component {
         isRegistered: true,
       },
       () => {
+        login();
+        this.setLocalStorage();
         history.push({
           pathname: "/Home",
           state: { ...this.state },
@@ -60,6 +65,10 @@ class RegistrationForm extends Component {
       this.validateField(name, value);
     });
   };
+
+  setLocalStorage = () => {
+    localStorage.setItem("userDetails", JSON.stringify(this.state));
+  }
 
   /**
    * Validate User Input

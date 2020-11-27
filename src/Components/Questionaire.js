@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import Question from "./Question";
+import { logout } from "./utils/index";
 import skill0Questionaire from "../Questionaire.json";
 import skill1Questionaire from "../QuestionaireSkill1.json";
 import skill2Questionaire from "../QuestionaireSkill2.json";
@@ -38,29 +39,31 @@ class Questionaire extends Component {
    * set Questionaire according to the skill level
    */
   UNSAFE_componentWillMount() {
+    const userData = JSON.parse(localStorage.getItem("userDetails"));
     this.setState({
-      firstName: _.get(this.props, "location.state.firstName"),
-      lastName: _.get(this.props, "location.state.lastName"),
-      email: _.get(this.props, "location.state.email"),
-      gender: _.get(this.props, "location.state.gender"),
-      password: _.get(this.props, "location.state.password"),
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      password: userData.password,
+      email: userData.email,
+      gender: userData.gender,
+      isRegistered: userData.isRegistered,
     });
-    const level = _.get(this.props, "location.state.skillLevel");
-
-    let questionsd = [];
-    if (level === skillLevels[0]) {
-      questionsd = skill0Questionaire.questions;
-    } else if (level === skillLevels[1]) {
-      questionsd = skill1Questionaire.questions;
-    } else {
-      questionsd = skill2Questionaire.questions;
+    if (!JSON.parse(localStorage.getItem("state"))) {
+      const level = _.get(this.props, "location.state.skillLevel");
+      let questionsd = [];
+      if (level === skillLevels[0]) {
+        questionsd = skill0Questionaire.questions;
+      } else if (level === skillLevels[1]) {
+        questionsd = skill1Questionaire.questions;
+      } else {
+        questionsd = skill2Questionaire.questions;
+      }
+      this.setState({
+        skillLevel: level,
+        questionData: questionsd,
+        questionCount: questionsd.length,
+      });
     }
-
-    this.setState({
-      skillLevel: level,
-      questionData: questionsd,
-      questionCount: questionsd.length,
-    });
     this.timer = setInterval(() => {
       // eslint-disable-next-line react/destructuring-assignment
       const newCount = this.state.quizTime - 1;
@@ -69,17 +72,12 @@ class Questionaire extends Component {
     }, 1000);
   }
 
-  /**
-   * Handle back button click
-   */
   componentDidMount() {
     const { history } = this.props;
-    window.onpopstate = () => {
-      history.push({
-        pathname: "/LandingPage",
-        state: { ...this.state },
-      });
-    };
+    this.updateLocalStorage();
+    window.addEventListener("popstate", () => {
+      history.push("/Questionaire");
+    });
   }
 
   /**
@@ -117,9 +115,8 @@ class Questionaire extends Component {
     } else {
       this.setState({
         questionIndex: questIndex,
-      });
+      }, () => this.updateLocalStorage());
     }
-    this.updateLocalStorage();
   };
 
   /**
@@ -177,6 +174,7 @@ class Questionaire extends Component {
     const questionsAttempt = candidateResponses.filter(
       (c) => c.IsAttempted == true,
     ).length;
+    logout();
     this.setState(
       {
         candidateScore: correctAnswers,
@@ -186,14 +184,12 @@ class Questionaire extends Component {
       () => {
         this.resetTimer();
         this.downloadFile();
-
         history.push({
           pathname: "/SubmitTest",
           state: { ...this.state },
         });
       },
     );
-    this.updateLocalStorage();
   };
 
   /**
@@ -201,44 +197,65 @@ class Questionaire extends Component {
    */
   previousQuestion = () => {
     const { questionIndex, candidateResponses } = this.state;
-    candidateResponses.splice(questionIndex, 1);
+    const questionResponse = candidateResponses.filter((a) => a.id == questionIndex - 1);
+    let response = [];
+    if (questionResponse.length !== 0) {
+      response = questionResponse[0].Response;
+      candidateResponses.splice(questionIndex - 1);
+    }
+    candidateResponses.splice(questionIndex - 1, 1);
     this.setState({
       questionIndex: questionIndex - 1,
-    });
-    this.updateLocalStorage();
+      currentResponse: response,
+    }, () => this.updateLocalStorage());
   };
 
-  /**
+setQuestion = (event) => {
+  const { candidateResponses } = this.state;
+  const questionResponse = candidateResponses.filter((a) => a.id == event - 1);
+  let response = [];
+  if (questionResponse.length !== 0) {
+    response = questionResponse[0].Response;
+    candidateResponses.splice(event - 1);
+  }
+  this.setState({
+    questionIndex: event - 1,
+    currentResponse: response,
+  }, () => this.updateLocalStorage());
+}
+
+/**
    * Update Local storage on state change
    */
-  updateLocalStorage() {
-    localStorage.setItem("state", JSON.stringify(this.state));
-  }
+updateLocalStorage() {
+  localStorage.setItem("state", JSON.stringify(this.state));
+}
 
-  render() {
-    const {
-      questionIndex, questionData, questionCount, IsQuizSubmitted, quizTime, currentResponse,
-    } = this.state;
-    return (
-      <Question
-        questionId={questionIndex}
-        questionText={
+render() {
+  const {
+    questionIndex, questionData, questionCount, IsQuizSubmitted, quizTime, currentResponse,
+  } = this.state;
+  return (
+    <Question
+      questionId={questionIndex}
+      questionText={
             questionData[questionIndex].question
           }
-        options={questionData[questionIndex].options}
-        questionCount={questionCount}
-        onNext={this.nextQuestion}
-        onPrevious={this.previousQuestion}
-        onChange={this.choiceSelected}
-        submitTest={this.submitTest}
-        answer={currentResponse}
-        clearResponse={this.clearResponse}
-        isQuizSubmitted={IsQuizSubmitted}
-        quizTime={quizTime}
-      />
+      options={questionData[questionIndex].options}
+      questionCount={questionCount}
+      onNext={this.nextQuestion}
+      onPrevious={this.previousQuestion}
+      onChange={this.choiceSelected}
+      submitTest={this.submitTest}
+      answer={currentResponse}
+      setQuestion={this.setQuestion}
+      clearResponse={this.clearResponse}
+      isQuizSubmitted={IsQuizSubmitted}
+      quizTime={quizTime}
+    />
 
-    );
-  }
+  );
+}
 }
 
 Questionaire.propTypes = {
