@@ -6,6 +6,7 @@ const PublicRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) => (
+      // eslint-disable-next-line no-nested-ternary
       isLogin()
         ? isTestActive()
           ? <Redirect to="/Questionaire" />

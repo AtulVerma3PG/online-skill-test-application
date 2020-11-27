@@ -1,10 +1,12 @@
 import React from "react";
+import { logout } from "./utils";
 /**
  * Handle irregular browser behaviour
  */
 const LandingPage = (props) => {
   const { history } = props;
   const openHome = () => {
+    logout();
     history.push("/");
   };
   return (
