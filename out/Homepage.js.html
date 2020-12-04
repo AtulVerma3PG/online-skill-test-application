@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Homepage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Homepage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
+import { DropdownButton, Dropdown } from "react-bootstrap";
+import { testActive } from "./utils/index";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const skillLevels = ["Level 1", "Level 2", "Level 3"];
+
+class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      IsLevelFilled: false,
+      IsAggreed: false,
+      IsQuizSubmitted: false,
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      gender: "",
+      isRegistered: false,
+      skillLevel: "Select the skill level",
+    };
+  }
+
+  /**
+   * handling back button click and updating the state for the registration detailsS
+   */
+  componentDidMount() {
+    const userData = JSON.parse(localStorage.getItem("userDetails"));
+    this.setState({
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      password: userData.password,
+      email: userData.email,
+      gender: userData.gender,
+      isRegistered: userData.isRegistered,
+    });
+  }
+
+  /**
+   * Handle skill level selected
+   *
+   * @param {string} eventKey Skill level selected
+   * @param {*} event
+   */
+  handleSelect(eventKey) {
+    this.setState({ skillLevel: eventKey, IsLevelFilled: true });
+  }
+
+  /**
+   * Handle skill level selected
+   *
+   * @param {string} eventKey Skill level selected
+   * @param {*} event
+   */
+  handleAgreement() {
+    const { IsAggreed } = this.state;
+    this.setState({ IsAggreed: !IsAggreed });
+  }
+
+  /**
+   * Clear local storage and start questionaire
+   */
+  startTestHandler = () => {
+    const { history } = this.props;
+    localStorage.removeItem("state");
+    testActive();
+    history.push({
+      pathname: "/Questionaire",
+      state: { ...this.state },
+    });
+  };
+
+  render() {
+    const { IsLevelFilled, skillLevel, IsAggreed } = this.state;
+    return (
+      &lt;div>
+        &lt;div>
+          &lt;h1>Skill Examination&lt;/h1>
+          &lt;br />
+          &lt;h2>Examination Instructions&lt;/h2>
+          &lt;ul className="list-group">
+            &lt;li className="list-group-item">
+              A start button would start the test with specific time
+            &lt;/li>
+            &lt;li className="list-group-item">
+              Candidates can view one question per page and can navigate
+              next/previous.
+            &lt;/li>
+            &lt;li className="list-group-item">
+              Question may be a single or multiple choice.
+            &lt;/li>
+            &lt;li className="list-group-item">
+              Test would finish automatically after the timer ends.
+            &lt;/li>
+            &lt;li className="list-group-item">
+              The time limit for the test is 10 minutes.
+            &lt;/li>
+          &lt;/ul>
+        &lt;/div>
+        &lt;br />
+        &lt;br />
+        &lt;br />
+
+        &lt;div>
+          &lt;DropdownButton
+            title={skillLevel}
+            id="selectLevel"
+            onSelect={(eventKey) => this.handleSelect(eventKey)}
+          >
+            {skillLevels.map((opt) => (
+              &lt;Dropdown.Item as="button" eventKey={opt} key={opt}>
+                {opt}
+              &lt;/Dropdown.Item>
+            ))}
+          &lt;/DropdownButton>
+          &lt;div className="checkbox">
+            &lt;label
+              className="checkbox-inline"
+              htmlFor="{choice}"
+              style={{ fontWeight: "bold" }}
+            >
+              &lt;input
+                type="checkbox"
+                value="agreement"
+                onChange={() => this.handleAgreement()}
+              />
+              I agree to the Terms and Conditions
+            &lt;/label>
+            &lt;br />
+          &lt;/div>
+        &lt;/div>
+        &lt;br />
+        &lt;br />
+        {IsLevelFilled &amp;&amp; IsAggreed &amp;&amp; (
+          &lt;div>
+            &lt;button
+              type="button"
+              className="btn btn-primary btn-lg"
+              onClick={this.startTestHandler}
+            >
+              Start Test
+            &lt;/button>
+          &lt;/div>
+        )}
+      &lt;/div>
+    );
+  }
+}
+
+HomePage.propTypes = {
+  history: Object.isRequired,
+};
+
+export default HomePage;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Dec 04 2020 14:42:30 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
