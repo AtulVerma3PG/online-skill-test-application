@@ -148,7 +148,6 @@ class Questionaire extends Component {
     const questionsAttempt = candidateResponses.filter(
       (c) => c.IsAttempted == true,
     ).length;
-    logout();
     this.setState(
       {
         candidateScore: correctAnswers,
@@ -158,6 +157,7 @@ class Questionaire extends Component {
       () => {
         this.resetTimer();
         this.downloadFile();
+        logout();
         history.push({
           pathname: "/SubmitTest",
           state: { ...this.state },
