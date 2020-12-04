@@ -65,7 +65,7 @@ const question = (props) => {
                   value={choice}
                   key={choice}
                   checked={props.answer.length > 0 ? props.answer.includes(choice) : false}
-                  onChange={(e) => props.onChange(e)}
+                  onChange={() => props.onChange(choice)}
                 />
                 {choice}
               </label>

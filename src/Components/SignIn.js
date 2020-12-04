@@ -6,7 +6,7 @@ import React from "react";
 const SignIn = (props) => {
   const { history } = props;
   const openHome = () => {
-    history.push("/");
+    history.push("/RegistrationForm");
   };
   return (
     <div>

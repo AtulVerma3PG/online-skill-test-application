@@ -18,6 +18,7 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
+  "ignorePatterns": ["serviceWorker.js"],
   "rules": {
     "eqeqeq": "off",
     "curly": "error",
@@ -32,8 +33,6 @@
     }],
     "camelcase": [
       "error", {
-        "ignoreDestructuring": true,
-        "allow": [ "^UNSAFE_" ]
       }
     ],"react/jsx-props-no-spreading": "off"
   }

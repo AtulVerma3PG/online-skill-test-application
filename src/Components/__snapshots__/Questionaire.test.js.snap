@@ -102,5 +102,69 @@ exports[`First Submit Test Snapshot test 1`] = `
   >
     Next
   </button>
+  <button
+    className="questionaireButton btn btn-info"
+    disabled={false}
+    id="submitTest"
+    onClick={[Function]}
+    type="button"
+  >
+    Submit Test
+  </button>
+  <nav
+    className="navbar navbar-expand navbar-light"
+  >
+    <a
+      className="navbar-brand"
+      href="#home"
+    >
+      Go To Question : 
+    </a>
+    <div
+      className="mr-auto navbar-nav"
+      onKeyDown={[Function]}
+    >
+      <a
+        className="nav-link active"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+      >
+        1
+      </a>
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+      >
+        2
+      </a>
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+      >
+        3
+      </a>
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+      >
+        4
+      </a>
+    </div>
+  </nav>
 </div>
 `;

@@ -22,6 +22,7 @@ function App() {
             <Switch>
               <Route path="/LandingPage" component={LandingPage} />
               <Route path="/SignIn" component={SignIn} />
+              <Route exact path="/RegistrationForm" component={RegistrationForm} />
               <Route exact path="/" component={isLogin() ? HomePage : RegistrationForm} />
               <PublicRoute path="/Home" component={HomePage} />
               <PrivateRoute path="/Questionaire" component={Questionaire} />
