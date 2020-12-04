@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { Component } from "react";
 import _ from "lodash";
 import Question from "./Question";
@@ -66,7 +67,10 @@ class Questionaire extends Component {
    */
   nextQuestion = () => {
     const {
-      currentResponse, questionIndex, questionData, candidateResponses,
+      currentResponse,
+      questionIndex,
+      questionData,
+      candidateResponses,
     } = this.state;
     const isAnswerCorrect = JSON.stringify(currentResponse)
       == JSON.stringify(questionData[questionIndex].answer);
@@ -81,15 +85,20 @@ class Questionaire extends Component {
     });
     const questIndex = questionIndex + 1;
     this.clearResponse();
-    const questionResponse = candidateResponses.filter((a) => a.id == questIndex);
+    const questionResponse = candidateResponses.filter(
+      (a) => a.id == questIndex,
+    );
     let response = [];
     if (questionResponse.length !== 0) {
       response = questionResponse[0].Response;
     }
-    this.setState({
-      questionIndex: questIndex,
-      currentResponse: response,
-    }, () => this.updateLocalStorage());
+    this.setState(
+      {
+        questionIndex: questIndex,
+        currentResponse: response,
+      },
+      () => this.updateLocalStorage(),
+    );
   };
 
   /**
@@ -171,7 +180,9 @@ class Questionaire extends Component {
    */
   previousQuestion = () => {
     const { questionIndex, candidateResponses } = this.state;
-    const questionResponse = candidateResponses.filter((a) => a.id == questionIndex - 1);
+    const questionResponse = candidateResponses.filter(
+      (a) => a.id == questionIndex - 1,
+    );
     let response = [];
     if (questionResponse.length !== 0) {
       response = questionResponse[0].Response;
@@ -179,93 +190,103 @@ class Questionaire extends Component {
     } else {
       candidateResponses.splice(questionIndex - 1, 1);
     }
-    this.setState({
-      questionIndex: questionIndex - 1,
-      currentResponse: response,
-    }, () => this.updateLocalStorage());
+    this.setState(
+      {
+        questionIndex: questionIndex - 1,
+        currentResponse: response,
+      },
+      () => this.updateLocalStorage(),
+    );
   };
 
-setQuestion = (event) => {
-  const { candidateResponses } = this.state;
-  const questionResponse = candidateResponses.filter((a) => a.id == event - 1);
-  let response = [];
-  if (questionResponse.length !== 0) {
-    response = questionResponse[0].Response;
-    candidateResponses.splice(event - 1, 1);
-  }
-  this.setState({
-    questionIndex: event - 1,
-    currentResponse: response,
-  }, () => this.updateLocalStorage());
-}
-
-setInitialState() {
-  if (!JSON.parse(localStorage.getItem("state"))) {
-    const userData = JSON.parse(localStorage.getItem("userDetails"));
-    const level = _.get(this.props, "location.state.skillLevel");
-    let questionsd = [];
-    if (level === skillLevels[0]) {
-      questionsd = skill0Questionaire.questions;
-    } else if (level === skillLevels[1]) {
-      questionsd = skill1Questionaire.questions;
-    } else {
-      questionsd = skill2Questionaire.questions;
+  setQuestion = (event) => {
+    const { candidateResponses } = this.state;
+    const questionResponse = candidateResponses.filter(
+      (a) => a.id == event - 1,
+    );
+    let response = [];
+    if (questionResponse.length !== 0) {
+      response = questionResponse[0].Response;
+      candidateResponses.splice(event - 1, 1);
     }
-    initialState = {
-      skillLevel: level,
-      questionData: questionsd,
-      questionCount: questionsd.length,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      password: userData.password,
-      email: userData.email,
-      gender: userData.gender,
-      isRegistered: userData.isRegistered,
-      questionIndex: 0,
-      isFalseLogin: false,
-      quizTime: 600,
-      IsQuizSubmitted: false,
-      candidateDetails: [],
-      candidateResponses: [],
-      currentResponse: [],
-      questionsAttempted: 0,
-      candidateScore: 0,
-    };
-  }
-}
+    this.setState(
+      {
+        questionIndex: event - 1,
+        currentResponse: response,
+      },
+      () => this.updateLocalStorage(),
+    );
+  };
 
-/**
+  setInitialState() {
+    if (!JSON.parse(localStorage.getItem("state"))) {
+      const userData = JSON.parse(localStorage.getItem("userDetails"));
+      const level = _.get(this.props, "location.state.skillLevel");
+      let questionsd = [];
+      if (level === skillLevels[0]) {
+        questionsd = skill0Questionaire.questions;
+      } else if (level === skillLevels[1]) {
+        questionsd = skill1Questionaire.questions;
+      } else {
+        questionsd = skill2Questionaire.questions;
+      }
+      initialState = {
+        skillLevel: level,
+        questionData: questionsd,
+        questionCount: questionsd.length,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        password: userData.password,
+        email: userData.email,
+        gender: userData.gender,
+        isRegistered: userData.isRegistered,
+        questionIndex: 0,
+        isFalseLogin: false,
+        quizTime: 600,
+        IsQuizSubmitted: false,
+        candidateDetails: [],
+        candidateResponses: [],
+        currentResponse: [],
+        questionsAttempted: 0,
+        candidateScore: 0,
+      };
+    }
+  }
+
+  /**
    * Update Local storage on state change
    */
-updateLocalStorage() {
-  localStorage.setItem("state", JSON.stringify(this.state));
-}
+  updateLocalStorage() {
+    localStorage.setItem("state", JSON.stringify(this.state));
+  }
 
-render() {
-  const {
-    questionIndex, questionData, questionCount, IsQuizSubmitted, quizTime, currentResponse,
-  } = this.state;
-  return (
-    <Question
-      questionId={questionIndex}
-      questionText={
-            questionData[questionIndex].question
-          }
-      options={questionData[questionIndex].options}
-      questionCount={questionCount}
-      onNext={this.nextQuestion}
-      onPrevious={this.previousQuestion}
-      onChange={this.choiceSelected}
-      submitTest={this.submitTest}
-      answer={currentResponse}
-      setQuestion={this.setQuestion}
-      clearResponse={this.clearResponse}
-      isQuizSubmitted={IsQuizSubmitted}
-      quizTime={quizTime}
-    />
-
-  );
-}
+  render() {
+    const {
+      questionIndex,
+      questionData,
+      questionCount,
+      IsQuizSubmitted,
+      quizTime,
+      currentResponse,
+    } = this.state;
+    return (
+      <Question
+        questionId={questionIndex}
+        questionText={questionData[questionIndex].question}
+        options={questionData[questionIndex].options}
+        questionCount={questionCount}
+        onNext={this.nextQuestion}
+        onPrevious={this.previousQuestion}
+        onChange={this.choiceSelected}
+        submitTest={this.submitTest}
+        answer={currentResponse}
+        setQuestion={this.setQuestion}
+        clearResponse={this.clearResponse}
+        isQuizSubmitted={IsQuizSubmitted}
+        quizTime={quizTime}
+      />
+    );
+  }
 }
 
 Questionaire.propTypes = {

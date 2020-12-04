@@ -7,7 +7,6 @@ import { logout } from "./utils";
  */
 const SubmitTest = ({ location }) => {
   const { state } = location;
-  console.log(state);
   logout();
   return (
     <div>

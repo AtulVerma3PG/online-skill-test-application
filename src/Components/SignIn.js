@@ -5,6 +5,7 @@ import React from "react";
  */
 const SignIn = (props) => {
   const { history } = props;
+  localStorage.clear();
   const openHome = () => {
     history.push("/RegistrationForm");
   };

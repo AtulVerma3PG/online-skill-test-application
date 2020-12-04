@@ -27,6 +27,10 @@ class HomePage extends Component {
    */
   componentDidMount() {
     const userData = JSON.parse(localStorage.getItem("userDetails"));
+    const { history } = this.props;
+    if (!userData) {
+      history.push("/");
+    }
     this.setState({
       firstName: userData.firstName,
       lastName: userData.lastName,

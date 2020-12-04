@@ -5,7 +5,9 @@
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb"],
+  "extends": [
+    "airbnb"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -17,23 +19,49 @@
     "ecmaVersion": 8,
     "sourceType": "module"
   },
-  "plugins": ["react"],
-  "ignorePatterns": ["serviceWorker.js"],
+  "plugins": [
+    "react"
+  ],
+  "ignorePatterns": [
+    "serviceWorker.js"
+  ],
   "rules": {
     "eqeqeq": "off",
     "curly": "error",
-    "quotes": ["error", "double"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "import/no-named-as-default": 0,
     "react/jsx-one-expression-per-line": "off",
-    "jsx-a11y/label-has-for": [ 2, {
-      "required": {
-          "some": [ "nesting", "id" ]
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "required": {
+          "some": [
+            "nesting",
+            "id"
+          ]
+        }
       }
-    }],
+    ],
     "camelcase": [
-      "error", {
-      }
-    ],"react/jsx-props-no-spreading": "off"
+      "error",
+      {}
+    ],
+    "linebreak-style": [
+      "error",
+      "windows"
+    ],
+    "react/jsx-props-no-spreading": "off"
   }
 }
