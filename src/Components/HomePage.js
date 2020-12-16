@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
+import PropTypes from "prop-types";
 import { testActive } from "./utils/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -153,7 +154,7 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
-  history: Object.isRequired,
+  history: PropTypes.func.isRequired,
 };
 
 export default HomePage;

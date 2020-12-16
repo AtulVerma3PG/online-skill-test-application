@@ -149,7 +149,24 @@ class Questionaire extends Component {
    * Submit candidate Responses
    */
   submitTest = () => {
-    const { candidateResponses } = this.state;
+    const {
+      currentResponse,
+      questionIndex,
+      questionData,
+      candidateResponses,
+    } = this.state;
+    const isAnswerCorrect = JSON.stringify(currentResponse)
+      == JSON.stringify(questionData[questionIndex].answer);
+    const isQuestionAttempted = currentResponse.length > 0;
+    candidateResponses.push({
+      id: questionIndex,
+      Question: questionData[questionIndex].question,
+      Response: currentResponse,
+      Answer: questionData[questionIndex].answer,
+      IsAnswerCorrect: isAnswerCorrect,
+      IsAttempted: isQuestionAttempted,
+    });
+    this.clearResponse();
     const { history } = this.props;
     const correctAnswers = candidateResponses.filter(
       (c) => c.IsAnswerCorrect == true,

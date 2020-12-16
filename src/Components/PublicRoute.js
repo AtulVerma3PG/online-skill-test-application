@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Route, Redirect } from "react-router-dom";
 import { isLogin, isTestActive } from "./utils";
 
@@ -17,6 +19,6 @@ const PublicRoute = ({ component: Component, ...rest }) => (
 );
 
 PublicRoute.propTypes = {
-  component: Object.isRequired,
+  component: PropTypes.func.isRequired,
 };
 export default PublicRoute;
