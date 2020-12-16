@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 // import { useHistory } from "react-router-dom";
 import { isLogin, login } from "./utils";
-import "./Css/Page.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class RegistrationForm extends Component {
