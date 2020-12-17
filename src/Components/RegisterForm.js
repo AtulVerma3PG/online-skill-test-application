@@ -139,10 +139,10 @@ class RegistrationForm extends Component {
       formErrors, firstName, lastName, password, email, formValid,
     } = this.state;
     return (
-      <div>
+      <div className="form">
         <form onSubmit={this.handleSubmit}>
           <h3>User Registration</h3>
-          <div className="panel panel-default">
+          <div className="panel panel-default form">
             {Object.keys(formErrors).map((fieldName) => {
               if (formErrors[fieldName].length > 0) {
                 return (

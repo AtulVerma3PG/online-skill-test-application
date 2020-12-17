@@ -80,11 +80,12 @@ class HomePage extends Component {
     const { IsLevelFilled, skillLevel, IsAggreed } = this.state;
     return (
       <div>
-        <div>
+        <div className="home">
           <h1>Skill Examination</h1>
           <br />
-          <h2>Examination Instructions</h2>
-          <ul className="list-group">
+          <ul className="list-group quizinstructions">
+            <h2>Examination Instructions</h2>
+            <br />
             <li className="list-group-item">
               A start button would start the test with specific time
             </li>
@@ -102,42 +103,36 @@ class HomePage extends Component {
               The time limit for the test is 10 minutes.
             </li>
           </ul>
-        </div>
-        <br />
-        <br />
-        <br />
-
-        <div>
-          <DropdownButton
-            title={skillLevel}
-            id="selectLevel"
-            onSelect={(eventKey) => this.handleSelect(eventKey)}
-          >
-            {skillLevels.map((opt) => (
-              <Dropdown.Item as="button" eventKey={opt} key={opt}>
-                {opt}
-              </Dropdown.Item>
-            ))}
-          </DropdownButton>
-          <div className="checkbox">
-            <label
-              className="checkbox-inline"
-              htmlFor="{choice}"
-              style={{ fontWeight: "bold" }}
+          <div>
+            <DropdownButton
+              title={skillLevel}
+              id="selectLevel"
+              className="select"
+              onSelect={(eventKey) => this.handleSelect(eventKey)}
             >
-              <input
-                type="checkbox"
-                value="agreement"
-                onChange={() => this.handleAgreement()}
-              />
-              I agree to the Terms and Conditions
-            </label>
-            <br />
+              {skillLevels.map((opt) => (
+                <Dropdown.Item as="button" eventKey={opt} key={opt}>
+                  {opt}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
+            <div className="checkbox">
+              <label
+                className="checkbox-inline"
+                htmlFor="{choice}"
+                style={{ fontWeight: "bold" }}
+              >
+                <input
+                  type="checkbox"
+                  value="agreement"
+                  onChange={() => this.handleAgreement()}
+                />
+                I agree to the Terms and Conditions
+              </label>
+              <br />
+            </div>
           </div>
-        </div>
-        <br />
-        <br />
-        {IsLevelFilled && IsAggreed && (
+          {IsLevelFilled && IsAggreed && (
           <div>
             <button
               type="button"
@@ -147,7 +142,8 @@ class HomePage extends Component {
               Start Test
             </button>
           </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }

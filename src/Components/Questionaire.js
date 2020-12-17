@@ -73,7 +73,7 @@ class Questionaire extends Component {
       candidateResponses,
     } = this.state;
     const isAnswerCorrect = JSON.stringify(currentResponse)
-      == JSON.stringify(questionData[questionIndex].answer);
+      === JSON.stringify(questionData[questionIndex].answer);
     const isQuestionAttempted = currentResponse.length > 0;
     candidateResponses.push({
       id: questionIndex,
@@ -86,7 +86,7 @@ class Questionaire extends Component {
     const questIndex = questionIndex + 1;
     this.clearResponse();
     const questionResponse = candidateResponses.filter(
-      (a) => a.id == questIndex,
+      (a) => a.id === questIndex,
     );
     let response = [];
     if (questionResponse.length !== 0) {
@@ -156,7 +156,7 @@ class Questionaire extends Component {
       candidateResponses,
     } = this.state;
     const isAnswerCorrect = JSON.stringify(currentResponse)
-      == JSON.stringify(questionData[questionIndex].answer);
+      === JSON.stringify(questionData[questionIndex].answer);
     const isQuestionAttempted = currentResponse.length > 0;
     candidateResponses.push({
       id: questionIndex,
@@ -169,10 +169,10 @@ class Questionaire extends Component {
     this.clearResponse();
     const { history } = this.props;
     const correctAnswers = candidateResponses.filter(
-      (c) => c.IsAnswerCorrect == true,
+      (c) => c.IsAnswerCorrect === true,
     ).length;
     const questionsAttempt = candidateResponses.filter(
-      (c) => c.IsAttempted == true,
+      (c) => c.IsAttempted === true,
     ).length;
     this.setState(
       {
@@ -198,7 +198,7 @@ class Questionaire extends Component {
   previousQuestion = () => {
     const { questionIndex, candidateResponses } = this.state;
     const questionResponse = candidateResponses.filter(
-      (a) => a.id == questionIndex - 1,
+      (a) => a.id === questionIndex - 1,
     );
     let response = [];
     if (questionResponse.length !== 0) {
@@ -219,7 +219,7 @@ class Questionaire extends Component {
   setQuestion = (event) => {
     const { candidateResponses } = this.state;
     const questionResponse = candidateResponses.filter(
-      (a) => a.id == event - 1,
+      (a) => a.id === event - 1,
     );
     let response = [];
     if (questionResponse.length !== 0) {
