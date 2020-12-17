@@ -140,7 +140,7 @@ class RegistrationForm extends Component {
     } = this.state;
     return (
       <div className="form">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="container">
           <h3>User Registration</h3>
           <div className="panel panel-default form">
             {Object.keys(formErrors).map((fieldName) => {

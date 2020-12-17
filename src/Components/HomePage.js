@@ -83,7 +83,7 @@ class HomePage extends Component {
         <div className="home">
           <h1>Skill Examination</h1>
           <br />
-          <ul className="list-group quizinstructions">
+          <ul className="quizinstructions">
             <h2>Examination Instructions</h2>
             <br />
             <li className="list-group-item">
