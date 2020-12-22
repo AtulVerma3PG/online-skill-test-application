@@ -46,35 +46,37 @@ const question = (props) => {
         {" "}
         {second}
       </div>
-      <h3 id="question">
-        Question
-        {" "}
-        {props.questionId + 1}
-        {" "}
-        :
-        {" "}
-        {props.questionText}
-      </h3>
-      <div id="altcontainer">
-        <div className="radio">
-          {props.options.map((choice) => (
-            <div key={choice}>
-              <label className="radio-inline" htmlFor="{choice}">
-                <input
-                  type="checkbox"
-                  value={choice}
-                  key={choice}
-                  checked={props.answer.length > 0 ? props.answer.includes(choice) : false}
-                  onChange={() => props.onChange(choice)}
-                />
-                {choice}
-              </label>
-              <br />
-            </div>
-          ))}
+      <div className="questions">
+        <h4 id="question">
+          Question
+          {" "}
+          {props.questionId + 1}
+          {" "}
+          :
+          {" "}
+          {props.questionText}
+        </h4>
+        <div id="">
+          <div className="radio">
+            {props.options.map((choice) => (
+              <div key={choice}>
+                <label className="radio-inline" htmlFor="{choice}">
+                  <input
+                    type="checkbox"
+                    value={choice}
+                    key={choice}
+                    checked={props.answer.length > 0 ? props.answer.includes(choice) : false}
+                    onChange={() => props.onChange(choice)}
+                  />
+                  {choice}
+                </label>
+                <br />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      {props.questionId !== 0 && (
+
+        {props.questionId !== 0 && (
         <Button
           variant="info"
           onClick={props.onPrevious}
@@ -82,8 +84,8 @@ const question = (props) => {
         >
           Previous
         </Button>
-      )}
-      {props.answer.length !== 0 && (
+        )}
+        {props.answer.length !== 0 && (
         <Button
           variant="info"
           onClick={props.clearResponse}
@@ -91,8 +93,8 @@ const question = (props) => {
         >
           Clear Responses
         </Button>
-      )}
-      {props.questionId < props.questionCount - 1 && (
+        )}
+        {props.questionId < props.questionCount - 1 && (
         <Button
           variant="info"
           className="questionaireButton"
@@ -100,15 +102,16 @@ const question = (props) => {
         >
           Next
         </Button>
-      )}
-      <Button
-        variant="info"
-        id="submitTest"
-        onClick={props.submitTest}
-        className="questionaireButton"
-      >
-        Submit Test
-      </Button>
+        )}
+        <Button
+          variant="info"
+          id="submitTest"
+          onClick={props.submitTest}
+          className="questionaireButton"
+        >
+          Submit Test
+        </Button>
+      </div>
       <Navbar>
         <Navbar.Brand href="#home">Go To Question : </Navbar.Brand>
         <Nav className="mr-auto">

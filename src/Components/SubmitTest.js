@@ -1,5 +1,6 @@
 import React from "react";
 import { logout } from "./utils";
+import check from "../assets/check.png";
 /**
  *Show Candidate Score with details
  *
@@ -9,17 +10,20 @@ const SubmitTest = ({ location }) => {
   const { state } = location;
   logout();
   return (
-    <div>
-      <h4>Thanks for you Response.</h4>
+    <div className="thankyou-page">
+      <img src={check} alt="s" />
+      <h4>Thanks You! </h4>
       <p>
-        Name : {state.firstName} {state.lastName}
+        <b>Name :</b> {state.firstName} {state.lastName}
         <br />
-        Email : {state.email}
+        <b>Email :</b> {state.email}
         <br />
-        Questions Attempted : {state.questionsAttempted} /{" "}
-        {state.questionCount}
+        <b>Questions Attempted : </b>
+        <span className="number-score">{state.questionsAttempted} /{" "}
+          {state.questionCount}
+        </span>
         <br />
-        Score : {state.candidateScore} / {state.questionCount}
+        <b>Score :</b> <span className="number-score">{state.candidateScore} / {state.questionCount}</span>
       </p>
     </div>
   );

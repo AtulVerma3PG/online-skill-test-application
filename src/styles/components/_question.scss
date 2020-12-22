@@ -1,28 +1,40 @@
-#altcontainer {
-    background-color: #fff;
-    font-size: 120%;
-    line-height: 1.7em;
-  }
+
   .radio {
-    padding-left: 50px;
+    padding-left: 0px;
     text-align: left;
   }
   input[type="checkbox"] {
     margin-right: 1rem;
     text-align: left;
+    width: 30px;
+    height: 22px;
   }
   .Countdown-time {
-    font-size: 30px;
-    margin: 1px 0;
-    background-color: aqua;
-    display: inline-block;
+    padding: 6px 12px;
+    font-size: 24px;
+    margin: 24px;
+    background-color: #f7df19;
+    font-weight: bold;
   }
   .question {
     text-align: left;
   }
+  .questions h4{
+  margin-bottom: 2.5rem; }
   .questionaireButton {
     margin-left: 5%;
     border: 1px solid black;
     margin-top: 2%;
   }
-  
+  .questions  {
+  border: 2px solid #b6d5f1;
+    margin-top: 0.2rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: aliceblue;
+  }
+
+  label {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }

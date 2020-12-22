@@ -139,88 +139,104 @@ class RegistrationForm extends Component {
       formErrors, firstName, lastName, password, email, formValid,
     } = this.state;
     return (
-      <div className="form">
-        <form onSubmit={this.handleSubmit} className="container">
-          <h3>User Registration</h3>
-          <div className="panel panel-default form">
-            {Object.keys(formErrors).map((fieldName) => {
-              if (formErrors[fieldName].length > 0) {
-                return (
-                  <p key={fieldName}>
-                    {fieldName} {formErrors[fieldName]}
-                  </p>
-                );
-              }
-              return "";
-            })}
+      <div className="form registration-form container">
+        <div className="row">
+          <div className="col-md-3 register-left">
+            <h3>Welcome</h3>
+            <p>You are 30 seconds away from you online accessement!
+              You are 30 seconds away from you online accessement!
+            </p>
           </div>
-          <div>
-            <label htmlFor="firstName">FirstName : <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              value={firstName}
-              onChange={this.handleUserInput}
-              placeholder="First Name"
-            />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="lastName">LastName :<input
-              type="text"
-              name="lastName"
-              id="lastName"
-              value={lastName}
-              onChange={this.handleUserInput}
-              placeholder="Last Name"
-            />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="email">Email address :
+          <div className="col-md-9 register-right">
+            <form onSubmit={this.handleSubmit} className="container">
+              <h3 className="register-heading">User Registration</h3>
+              <div className="panel panel-default form">
+                {Object.keys(formErrors).map((fieldName) => {
+                  if (formErrors[fieldName].length > 0) {
+                    return (
+                      <p key={fieldName}>
+                        {fieldName} {formErrors[fieldName]}
+                      </p>
+                    );
+                  }
+                  return "";
+                })}
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    className="form-control"
+                    value={firstName}
+                    onChange={this.handleUserInput}
+                    placeholder="First Name"
+                  />
+
+                </div>
+                <div className="col-md-6">
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    className="form-control"
+                    value={lastName}
+                    onChange={this.handleUserInput}
+                    placeholder="Last Name"
+                  />
+
+                </div> <br />
+                <div className="col-md-6">
+
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    className="form-control"
+                    value={email}
+                    onChange={this.handleUserInput}
+                  />
+
+                </div>
+                <div className="col-md-6">
+
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="form-control"
+                    value={password}
+                    onChange={this.handleUserInput}
+                    placeholder="Password"
+                  />
+
+                </div> <br />
+                <div className="col-md-6">
+
+                  <select
+                    onChange={this.handleUserInput}
+                    name="gender"
+                    id="gender"
+                    className="select"
+                    defaultValue="Select Gender"
+                  >
+                    <option defaultValue>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+
+                </div>
+              </div>
               <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                value={email}
-                onChange={this.handleUserInput}
+                type="submit"
+                value="Submit"
+                disabled={!formValid}
               />
-            </label>
+            </form>
           </div>
-          <div>
-            <label htmlFor="password">Password :
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={this.handleUserInput}
-                placeholder="Password"
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="gender">Gender :
-              <select
-                onChange={this.handleUserInput}
-                name="gender"
-                id="gender"
-                className="select"
-                defaultValue="Select Gender"
-              >
-                <option defaultValue>Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </label>
-          </div>
-          <input
-            type="submit"
-            value="Submit"
-            disabled={!formValid}
-          />
-        </form>
+        </div>
       </div>
     );
   }

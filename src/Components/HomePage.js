@@ -79,31 +79,32 @@ class HomePage extends Component {
   render() {
     const { IsLevelFilled, skillLevel, IsAggreed } = this.state;
     return (
-      <div>
+      <div className="container">
         <div className="home">
           <h1>Skill Examination</h1>
           <br />
-          <ul className="quizinstructions">
-            <h2>Examination Instructions</h2>
-            <br />
-            <li className="list-group-item">
-              A start button would start the test with specific time
-            </li>
-            <li className="list-group-item">
-              Candidates can view one question per page and can navigate
-              next/previous.
-            </li>
-            <li className="list-group-item">
-              Question may be a single or multiple choice.
-            </li>
-            <li className="list-group-item">
-              Test would finish automatically after the timer ends.
-            </li>
-            <li className="list-group-item">
-              The time limit for the test is 10 minutes.
-            </li>
-          </ul>
-          <div>
+          <div className="quizinstructions">
+            <h4>Examination Instructions</h4>
+            <ol type="1">
+              <li>
+                A start button would start the test with specific time
+              </li>
+              <li>
+                Candidates can view one question per page and can navigate
+                next/previous.
+              </li>
+              <li>
+                Question may be a single or multiple choice.
+              </li>
+              <li>
+                Test would finish automatically after the timer ends.
+              </li>
+              <li>
+                The time limit for the test is 10 minutes.
+              </li>
+            </ol>
+          </div>
+          <div className="button-center">
             <DropdownButton
               title={skillLevel}
               id="selectLevel"
@@ -133,10 +134,10 @@ class HomePage extends Component {
             </div>
           </div>
           {IsLevelFilled && IsAggreed && (
-          <div>
+          <div className="button-center">
             <button
               type="button"
-              className="btn btn-primary btn-lg"
+              className="btn btn-success btn-md"
               onClick={this.startTestHandler}
             >
               Start Test

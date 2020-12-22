@@ -1,42 +1,64 @@
-  h1 {
-    font-size: 38px;
-  }
-  
+ 
+  .registration-form
+  {
+  width: 100%;
+  margin: 0px auto;
+  background: #efefef;
+  padding: 60px 120px 80px 120px;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    margin-top: 3%;
+    padding: 6%;
+}
+.register-right {
+  background: #f8f9fa;
+  border-top-left-radius: 10% 50%;
+  border-bottom-left-radius: 10% 50%;
+}
+.register-heading {
+  text-align: center;
+  margin-top: 8%;
+   color: #495057;
+}
   input[type="text"] {
     padding: 12px 20px;
-    margin: 8px 0 0 5px;
+    margin: 8px 0 15px 5px;
     box-sizing: border-box;
-    border: none;
+    border: 1px solid #ced4da;
     border-radius: 15px;
-    background-color: rgb(255, 249, 249);
+    background-color: #f2f4fb;
     color: rgb(10, 10, 10);
     font-family: Arial, Helvetica, sans-serif;
   }
-  input[type="email"] {
+  input[type="email"], select {
     padding: 12px 20px;
-    margin: 8px 0 0 5px;
+    margin: 8px 0 15px 5px;
     box-sizing: border-box;
-    border: none;
+    border: 1px solid #ced4da;
     border-radius: 15px;
-    background-color: rgb(255, 249, 249);
+    background-color: #f2f4fb;
     color: rgb(10, 10, 10);
     font-family: Arial, Helvetica, sans-serif;
   }
   
   input[type="password"] {
     padding: 12px 20px;
-    margin: 8px 0 0 5px;
+    margin: 8px 0 15px 5px;
     box-sizing: border-box;
-    border: none;
+    border: 1px solid #ced4da;
     border-radius: 15px;
-    background-color: rgb(255, 249, 249);
+    background-color: #f2f4fb;
     color: rgb(10, 10, 10);
     font-family: Arial, Helvetica, sans-serif;
   }
   
+  select{padding: 8px 18px;width:100%;}
+
   input[type="submit"] {
     background-color: #ddd;
-    border: none;
+    border: 1px solid #ced4da;
     color: black;
     padding: 10px 20px;
     text-align: center;
@@ -48,8 +70,12 @@
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 22px;
   }
-  
-  .container {
+  .register-left {
+    text-align: center;
+    color: #fff;
+    margin-top: 12%;
+}
+  /*.container {
     background-color: cadetblue;
     border-style: hidden;
     border-radius: 15px;
@@ -58,6 +84,7 @@
     text-align: center;
     box-shadow: 0 8px 6px -6px rgb(223, 13, 13);
   }
+  */
   @media screen and (max-width: 900px) {
     .main-contianer {
       display: flex;
@@ -70,20 +97,16 @@
   input[type="submit"] {
     background-color: #4caf50;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
+    padding: 8px 20px;
+    margin: 25px 0;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
     cursor: pointer;
+    width: 40%;
   }
   
   input[type="submit"]:hover {
     background-color: #3f8a42;
   }
   
-  div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 10px;
-  }
   
