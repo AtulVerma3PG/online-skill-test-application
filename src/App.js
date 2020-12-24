@@ -2,6 +2,7 @@ import React from "react";
 import {
   BrowserRouter, Switch, Route,
 } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import RegistrationForm from "./Components/RegisterForm";
 import "./App.css";
 import HomePage from "./Components/HomePage";
@@ -15,24 +16,27 @@ import { isLogin } from "./Components/utils";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <div>
-          <div className="content">
-            <Switch>
-              <Route path="/LandingPage" component={LandingPage} />
-              <Route path="/SignIn" component={SignIn} />
-              <Route exact path="/RegistrationForm" component={RegistrationForm} />
-              <Route exact path="/" component={isLogin() ? HomePage : RegistrationForm} />
-              <PublicRoute path="/Home" component={HomePage} />
-              <PrivateRoute path="/Questionaire" component={Questionaire} />
-              <Route path="/SubmitTest" component={SubmitTest} />
-              <Route path="*" component={LandingPage} />
-            </Switch>
+    <>
+      <Helmet><title>Online skill test Application</title></Helmet>
+      <div className="App">
+        <BrowserRouter>
+          <div>
+            <div className="content">
+              <Switch>
+                <Route path="/LandingPage" component={LandingPage} />
+                <Route path="/SignIn" component={SignIn} />
+                <Route exact path="/RegistrationForm" component={RegistrationForm} />
+                <Route exact path="/" component={isLogin() ? HomePage : RegistrationForm} />
+                <PublicRoute path="/Home" component={HomePage} />
+                <PrivateRoute path="/Questionaire" component={Questionaire} />
+                <Route path="/SubmitTest" component={SubmitTest} />
+                <Route path="*" component={LandingPage} />
+              </Switch>
+            </div>
           </div>
-        </div>
-      </BrowserRouter>
-    </div>
+        </BrowserRouter>
+      </div>
+    </>
   );
 }
 

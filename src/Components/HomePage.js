@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import PropTypes from "prop-types";
+import withLayout from "../hoc/withLayout";
 import { testActive } from "./utils/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -154,4 +155,4 @@ HomePage.propTypes = {
   history: PropTypes.func.isRequired,
 };
 
-export default HomePage;
+export default withLayout(HomePage);

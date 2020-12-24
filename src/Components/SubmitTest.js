@@ -1,5 +1,6 @@
 import React from "react";
 import { logout } from "./utils";
+import withLayout from "../hoc/withLayout";
 import check from "../assets/check.png";
 /**
  *Show Candidate Score with details
@@ -11,7 +12,7 @@ const SubmitTest = ({ location }) => {
   logout();
   return (
     <div className="thankyou-page">
-      <img src={check} alt="s" />
+      <img src={check} alt="check" />
       <h4>Thanks You! </h4>
       <p>
         <b>Name :</b> {state.firstName} {state.lastName}
@@ -33,4 +34,4 @@ SubmitTest.propTypes = {
   location: Object.isRequired,
 };
 
-export default SubmitTest;
+export default withLayout(SubmitTest);

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Css/Question.css";
 import { Button, Navbar, Nav } from "react-bootstrap";
+import withLayout from "../hoc/withLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 /**
  * This function is responsible to show the questions on online test
@@ -122,4 +123,4 @@ const question = (props) => {
   );
 };
 
-export default question;
+export default withLayout(question);

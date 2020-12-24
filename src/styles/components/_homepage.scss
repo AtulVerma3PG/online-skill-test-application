@@ -1,10 +1,7 @@
 .home {
-  /*background-image: url("../../assets/Background.jpg");*/
   background-size: cover;
   background-position: center;
   justify-content: space-around;
-  /*height: 100vh;
-  width: 100vw;*/
   padding: 1rem;
   text-align: left;
 }
@@ -15,7 +12,6 @@
   .quizinstructions ol li {padding:.50rem}
   .button-center {text-align: center;}
 .quizinstructions {
-    /*background-image: url("../../assets/Background-instruction.jpg");*/
     border: 2px solid darken($off-white, 40%);
     margin-top: $xs;
     border-radius: $xs;
@@ -34,7 +30,6 @@
   
   .select {
     padding: 15px 0;
-    /* margin: 8px 0 0 5px; */
     box-sizing: border-box;
     border: none;
     border-radius: 15px;

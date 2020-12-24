@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 // import { useHistory } from "react-router-dom";
 import { isLogin, login } from "./utils";
+import withLayout from "../hoc/withLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class RegistrationForm extends Component {
@@ -143,8 +144,7 @@ class RegistrationForm extends Component {
         <div className="row">
           <div className="col-md-3 register-left">
             <h3>Welcome</h3>
-            <p>You are 30 seconds away from you online accessement!
-              You are 30 seconds away from you online accessement!
+            <p>You are few minutes away from you online accessement!
             </p>
           </div>
           <div className="col-md-9 register-right">
@@ -245,4 +245,4 @@ class RegistrationForm extends Component {
 RegistrationForm.propTypes = {
   history: PropTypes.func.isRequired,
 };
-export default RegistrationForm;
+export default withLayout(RegistrationForm);
