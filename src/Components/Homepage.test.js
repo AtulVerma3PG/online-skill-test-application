@@ -2,8 +2,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
-import { createMemoryHistory } from "history";
+import { configure } from 'enzyme';
 import HomePage from "./HomePage";
 
 const state = {
@@ -37,17 +36,4 @@ test("HomePage Snapshot test", () => {
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
   localStorage.removeItem("userDetails");
-});
-
-const history = createMemoryHistory();
-history.push('/Questionaire');
-describe('Test Homepage Button component', () => {
-  it('Test HomePage click event', () => {
-  localStorage.setItem("userDetails", JSON.stringify(state));
-    const historyMock = { push: jest.fn() };
-    const shallowCopy = shallow(<HomePage history={historyMock} />);
-    shallowCopy.find("#selectLevel").simulate("onClick");
-    expect(history.location.pathname).toEqual('/Questionaire')
-    localStorage.removeItem("userDetails");
-  });
 });

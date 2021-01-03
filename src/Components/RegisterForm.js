@@ -150,18 +150,7 @@ class RegistrationForm extends Component {
           <div className="col-md-9 register-right">
             <form onSubmit={this.handleSubmit} className="container">
               <h3 className="register-heading">User Registration</h3>
-              <div className="panel panel-default form">
-                {Object.keys(formErrors).map((fieldName) => {
-                  if (formErrors[fieldName].length > 0) {
-                    return (
-                      <p key={fieldName}>
-                        {fieldName} {formErrors[fieldName]}
-                      </p>
-                    );
-                  }
-                  return "";
-                })}
-              </div>
+
               <div className="row">
                 <div className="col-md-6">
                   <input
@@ -173,7 +162,12 @@ class RegistrationForm extends Component {
                     onChange={this.handleUserInput}
                     placeholder="First Name"
                   />
-
+                  {formErrors.firstName.length > 0
+                  && (
+                  <p key={firstName} className="warning">
+                    First Name {formErrors.firstName}
+                  </p>
+                  )}
                 </div>
                 <div className="col-md-6">
                   <input
@@ -185,7 +179,12 @@ class RegistrationForm extends Component {
                     onChange={this.handleUserInput}
                     placeholder="Last Name"
                   />
-
+                  {formErrors.lastName.length > 0
+                  && (
+                  <p key={lastName} className="warning">
+                    Last Name {formErrors.lastName}
+                  </p>
+                  )}
                 </div> <br />
                 <div className="col-md-6">
 
@@ -198,7 +197,12 @@ class RegistrationForm extends Component {
                     value={email}
                     onChange={this.handleUserInput}
                   />
-
+                  {formErrors.email.length > 0
+                  && (
+                  <p key={email} className="warning">
+                    Email {formErrors.email}
+                  </p>
+                  )}
                 </div>
                 <div className="col-md-6">
 
@@ -211,7 +215,12 @@ class RegistrationForm extends Component {
                     onChange={this.handleUserInput}
                     placeholder="Password"
                   />
-
+                  {formErrors.password.length > 0
+                  && (
+                  <p key={password} className="warning">
+                    Password {formErrors.password}
+                  </p>
+                  )}
                 </div> <br />
                 <div className="col-md-6">
 
@@ -226,7 +235,12 @@ class RegistrationForm extends Component {
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
-
+                  {formErrors.gender.length > 0
+                  && (
+                  <p key="gender" className="warning">
+                    Gender {formErrors.gender}
+                  </p>
+                  )}
                 </div>
               </div>
               <input

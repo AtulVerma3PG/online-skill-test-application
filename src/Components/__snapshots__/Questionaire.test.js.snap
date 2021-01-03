@@ -1,170 +1,190 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`First Submit Test Snapshot test 1`] = `
-<div
-  className="container"
->
-  <div
-    className="Countdown-time"
-  >
-    Timer :-
-     
-    10
-     
-    :
-     
-    00
-  </div>
-  <h3
-    id="question"
-  >
-    Question
-     
-    1
-     
-    :
-     
-    HTML stands for?
-  </h3>
-  <div
-    id="altcontainer"
-  >
-    <div
-      className="radio"
-    >
-      <div>
-        <label
-          className="radio-inline"
-          htmlFor="{choice}"
-        >
-          <input
-            checked={false}
-            onChange={[Function]}
-            type="checkbox"
-            value="Hyper Text Markup Language"
-          />
-          Hyper Text Markup Language
-        </label>
-        <br />
-      </div>
-      <div>
-        <label
-          className="radio-inline"
-          htmlFor="{choice}"
-        >
-          <input
-            checked={false}
-            onChange={[Function]}
-            type="checkbox"
-            value="High Text Markup Language"
-          />
-          High Text Markup Language
-        </label>
-        <br />
-      </div>
-      <div>
-        <label
-          className="radio-inline"
-          htmlFor="{choice}"
-        >
-          <input
-            checked={false}
-            onChange={[Function]}
-            type="checkbox"
-            value="Hyper Tabular Markup Language"
-          />
-          Hyper Tabular Markup Language
-        </label>
-        <br />
-      </div>
-      <div>
-        <label
-          className="radio-inline"
-          htmlFor="{choice}"
-        >
-          <input
-            checked={false}
-            onChange={[Function]}
-            type="checkbox"
-            value="None of these"
-          />
-          None of these
-        </label>
-        <br />
-      </div>
-    </div>
-  </div>
-  <button
-    className="questionaireButton btn btn-info"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Next
-  </button>
-  <button
-    className="questionaireButton btn btn-info"
-    disabled={false}
-    id="submitTest"
-    onClick={[Function]}
-    type="button"
-  >
-    Submit Test
-  </button>
+<div>
   <nav
-    className="navbar navbar-expand navbar-light"
+    className="menu-container-nav"
   >
-    <a
-      className="navbar-brand"
-      href="#home"
-    >
-      Go To Question : 
-    </a>
-    <div
-      className="mr-auto navbar-nav"
-      onKeyDown={[Function]}
-    >
-      <a
-        className="nav-link active"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        1
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        2
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        3
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        4
-      </a>
-    </div>
+    <img
+      alt="logo"
+      className="logo"
+      src="logo.png"
+    />
   </nav>
+  <div
+    className="container"
+  >
+    <div
+      className="Countdown-time"
+    >
+      Timer :-
+       
+      10
+       
+      :
+       
+      00
+    </div>
+    <div
+      className="questions"
+    >
+      <h4
+        id="question"
+      >
+        Question
+         
+        1
+         
+        :
+         
+        HTML stands for?
+      </h4>
+      <div
+        id=""
+      >
+        <div
+          className="radio"
+        >
+          <div>
+            <label
+              className="radio-inline"
+              htmlFor="{choice}"
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+                value="Hyper Text Markup Language"
+              />
+              Hyper Text Markup Language
+            </label>
+            <br />
+          </div>
+          <div>
+            <label
+              className="radio-inline"
+              htmlFor="{choice}"
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+                value="High Text Markup Language"
+              />
+              High Text Markup Language
+            </label>
+            <br />
+          </div>
+          <div>
+            <label
+              className="radio-inline"
+              htmlFor="{choice}"
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+                value="Hyper Tabular Markup Language"
+              />
+              Hyper Tabular Markup Language
+            </label>
+            <br />
+          </div>
+          <div>
+            <label
+              className="radio-inline"
+              htmlFor="{choice}"
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+                value="None of these"
+              />
+              None of these
+            </label>
+            <br />
+          </div>
+        </div>
+      </div>
+      <button
+        className="questionaireButton btn btn-info"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Next
+      </button>
+      <button
+        className="questionaireButton btn btn-info"
+        disabled={false}
+        id="submitTest"
+        onClick={[Function]}
+        type="button"
+      >
+        Submit Test
+      </button>
+    </div>
+    <nav
+      className="navbar navbar-expand navbar-light"
+    >
+      <a
+        className="navbar-brand"
+        href="#home"
+      >
+        Go To Question : 
+      </a>
+      <div
+        className="mr-auto navbar-nav"
+        onKeyDown={[Function]}
+      >
+        <a
+          className="nav-link active"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          1
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          2
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          3
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          4
+        </a>
+      </div>
+    </nav>
+  </div>
+  <p
+    className="footer"
+  >
+    Copyright © 2020 , All Rights Reserved.
+  </p>
 </div>
 `;

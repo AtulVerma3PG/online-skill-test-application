@@ -2,28 +2,69 @@
 
 exports[`First Submit Test Snapshot test 1`] = `
 <div>
-  <h4>
-    Thanks for you Response.
-  </h4>
-  <p>
-    Name : 
-    
-     
-    
-    <br />
-    Email : 
-    
-    <br />
-    Questions Attempted : 
-    0
-     /
-     
-    0
-    <br />
-    Score : 
-    0
-     / 
-    0
+  <nav
+    className="menu-container-nav"
+  >
+    <img
+      alt="logo"
+      className="logo"
+      src="logo.png"
+    />
+  </nav>
+  <div
+    className="thankyou-page"
+  >
+    <img
+      alt="check"
+      src="check.png"
+    />
+    <h4>
+      Thanks You! 
+    </h4>
+    <p>
+      <b>
+        Name :
+      </b>
+       
+      
+       
+      
+      <br />
+      <b>
+        Email :
+      </b>
+       
+      
+      <br />
+      <b>
+        Questions Attempted : 
+      </b>
+      <span
+        className="number-score"
+      >
+        0
+         /
+         
+        0
+      </span>
+      <br />
+      <b>
+        Score :
+      </b>
+       
+      <span
+        className="number-score"
+      >
+        0
+         / 
+        0
+      </span>
+    </p>
+  </div>
+  <p
+    className="footer"
+  >
+    Copyright © 2020 , All Rights Reserved.
   </p>
 </div>
 `;

@@ -9,117 +9,153 @@ exports[`First Snapshot test 1`] = `
       className="content"
     >
       <div>
-        <form
-          onSubmit={[Function]}
+        <nav
+          className="menu-container-nav"
         >
-          <h3>
-            User Registration
-          </h3>
-          <div
-            className="panel panel-default"
-          >
-            
-            
-            
-            
-            
-          </div>
-          <div>
-            <label
-              htmlFor="firstName"
-            >
-              FirstName : 
-              <input
-                id="firstName"
-                name="firstName"
-                onChange={[Function]}
-                placeholder="First Name"
-                type="text"
-                value=""
-              />
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="lastName"
-            >
-              LastName :
-              <input
-                id="lastName"
-                name="lastName"
-                onChange={[Function]}
-                placeholder="Last Name"
-                type="text"
-                value=""
-              />
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="email"
-            >
-              Email address :
-              <input
-                id="email"
-                name="email"
-                onChange={[Function]}
-                placeholder="Email"
-                type="email"
-                value=""
-              />
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="password"
-            >
-              Password :
-              <input
-                id="password"
-                name="password"
-                onChange={[Function]}
-                placeholder="Password"
-                type="password"
-                value=""
-              />
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="gender"
-            >
-              Gender :
-              <select
-                className="select"
-                defaultValue="Select Gender"
-                id="gender"
-                name="gender"
-                onChange={[Function]}
-              >
-                <option
-                  defaultValue={true}
-                >
-                  Select Gender
-                </option>
-                <option
-                  value="male"
-                >
-                  Male
-                </option>
-                <option
-                  value="female"
-                >
-                  Female
-                </option>
-              </select>
-            </label>
-          </div>
-          <input
-            disabled={true}
-            type="submit"
-            value="Submit"
+          <img
+            alt="logo"
+            className="logo"
+            src="logo.png"
           />
-        </form>
+        </nav>
+        <div
+          className="form registration-form container"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-md-3 register-left"
+            >
+              <h3>
+                Welcome
+              </h3>
+              <p>
+                You are few minutes away from you online accessement!
+              </p>
+              <div
+                className="panel panel-default form"
+              >
+                
+                
+                
+                
+                
+              </div>
+            </div>
+            <div
+              className="col-md-9 register-right"
+            >
+              <form
+                className="container"
+                onSubmit={[Function]}
+              >
+                <h3
+                  className="register-heading"
+                >
+                  User Registration
+                </h3>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-md-6"
+                  >
+                    <input
+                      className="form-control"
+                      id="firstName"
+                      name="firstName"
+                      onChange={[Function]}
+                      placeholder="First Name"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="col-md-6"
+                  >
+                    <input
+                      className="form-control"
+                      id="lastName"
+                      name="lastName"
+                      onChange={[Function]}
+                      placeholder="Last Name"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                   
+                  <br />
+                  <div
+                    className="col-md-6"
+                  >
+                    <input
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="Email"
+                      type="email"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="col-md-6"
+                  >
+                    <input
+                      className="form-control"
+                      id="password"
+                      name="password"
+                      onChange={[Function]}
+                      placeholder="Password"
+                      type="password"
+                      value=""
+                    />
+                  </div>
+                   
+                  <br />
+                  <div
+                    className="col-md-6"
+                  >
+                    <select
+                      className="select"
+                      defaultValue="Select Gender"
+                      id="gender"
+                      name="gender"
+                      onChange={[Function]}
+                    >
+                      <option
+                        defaultValue={true}
+                      >
+                        Select Gender
+                      </option>
+                      <option
+                        value="male"
+                      >
+                        Male
+                      </option>
+                      <option
+                        value="female"
+                      >
+                        Female
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <input
+                  disabled={true}
+                  type="submit"
+                  value="Submit"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+        <p
+          className="footer"
+        >
+          Copyright © 2020 , All Rights Reserved.
+        </p>
       </div>
     </div>
   </div>

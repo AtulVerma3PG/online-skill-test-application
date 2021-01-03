@@ -1,199 +1,219 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Question Snapshot test 1`] = `
-<div
-  className="container"
->
-  <div
-    className="Countdown-time"
-  >
-    Timer :-
-     
-    09
-     
-    :
-     
-    58
-  </div>
-  <h3
-    id="question"
-  >
-    Question
-     
-    01
-     
-    :
-     
-    What temperature does water boil at?
-  </h3>
-  <div
-    id="altcontainer"
-  >
-    <div
-      className="radio"
-    />
-  </div>
-  <button
-    className="questionaireButton btn btn-info"
-    disabled={false}
-    onClick={
-      Object {
-        "push": [MockFunction],
-      }
-    }
-    type="button"
-  >
-    Previous
-  </button>
-  <button
-    className="questionaireButton btn btn-info"
-    disabled={false}
-    onClick={
-      Object {
-        "push": [MockFunction],
-      }
-    }
-    type="button"
-  >
-    Next
-  </button>
-  <button
-    className="questionaireButton btn btn-info"
-    disabled={false}
-    id="submitTest"
-    onClick={
-      Object {
-        "push": [MockFunction],
-      }
-    }
-    type="button"
-  >
-    Submit Test
-  </button>
+<div>
   <nav
-    className="navbar navbar-expand navbar-light"
+    className="menu-container-nav"
   >
-    <a
-      className="navbar-brand"
-      href="#home"
-    >
-      Go To Question : 
-    </a>
-    <div
-      className="mr-auto navbar-nav"
-      onKeyDown={[Function]}
-    >
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        1
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        2
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        3
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        4
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        5
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        6
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        7
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        8
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        9
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        10
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-      >
-        11
-      </a>
-    </div>
+    <img
+      alt="logo"
+      className="logo"
+      src="logo.png"
+    />
   </nav>
+  <div
+    className="container"
+  >
+    <div
+      className="Countdown-time"
+    >
+      Timer :-
+       
+      09
+       
+      :
+       
+      58
+    </div>
+    <div
+      className="questions"
+    >
+      <h4
+        id="question"
+      >
+        Question
+         
+        01
+         
+        :
+         
+        What temperature does water boil at?
+      </h4>
+      <div
+        id=""
+      >
+        <div
+          className="radio"
+        />
+      </div>
+      <button
+        className="questionaireButton btn btn-info"
+        disabled={false}
+        onClick={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        type="button"
+      >
+        Previous
+      </button>
+      <button
+        className="questionaireButton btn btn-info"
+        disabled={false}
+        onClick={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        type="button"
+      >
+        Next
+      </button>
+      <button
+        className="questionaireButton btn btn-info"
+        disabled={false}
+        id="submitTest"
+        onClick={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        type="button"
+      >
+        Submit Test
+      </button>
+    </div>
+    <nav
+      className="navbar navbar-expand navbar-light"
+    >
+      <a
+        className="navbar-brand"
+        href="#home"
+      >
+        Go To Question : 
+      </a>
+      <div
+        className="mr-auto navbar-nav"
+        onKeyDown={[Function]}
+      >
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          1
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          2
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          3
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          4
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          5
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          6
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          7
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          8
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          9
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          10
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          11
+        </a>
+      </div>
+    </nav>
+  </div>
+  <p
+    className="footer"
+  >
+    Copyright © 2020 , All Rights Reserved.
+  </p>
 </div>
 `;

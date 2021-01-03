@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@version/react-router-v4": "^1.0.0",
     "bootstrap": "^4.5.3",
+    "formik-yup": "0.0.5",
     "jsdoc": "^3.6.6",
     "lodash": "^4.17.20",
     "node-sass": "^4.14.1",
