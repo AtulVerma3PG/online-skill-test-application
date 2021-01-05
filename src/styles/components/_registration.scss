@@ -70,6 +70,21 @@
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 22px;
   }
+
+  input[type="submit"]:disabled:hover,
+input[type="submit"][disabled]:hover{
+  border: 1px solid #999999;
+  background-color: #beecc8;
+  color: #666666;
+}
+
+input[type="submit"]:disabled,
+input[type="submit"][disabled]{
+  border: 1px solid #999999;
+  background-color: #ee1d1d;
+  color: #666666;
+}
+
   .register-left {
     text-align: center;
     color: #fff;

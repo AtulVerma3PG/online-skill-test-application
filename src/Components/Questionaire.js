@@ -72,8 +72,8 @@ class Questionaire extends Component {
       questionData,
       candidateResponses,
     } = this.state;
-    const isAnswerCorrect = JSON.stringify(currentResponse)
-      === JSON.stringify(questionData[questionIndex].answer);
+    const isAnswerCorrect = JSON.stringify(currentResponse.sort())
+      === JSON.stringify(questionData[questionIndex].answer.sort());
     const isQuestionAttempted = currentResponse.length > 0;
     candidateResponses.push({
       id: questionIndex,

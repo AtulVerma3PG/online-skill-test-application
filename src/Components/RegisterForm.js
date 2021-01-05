@@ -33,6 +33,13 @@ class RegistrationForm extends Component {
       formValid: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    window.onbeforeunload = () => {
+      if (JSON.parse(window.localStorage.getItem("state"))) {
+        // last tab closed, perform cleanup.
+        localStorage.removeItem("champion");
+      }
+    };
   }
 
   /**
