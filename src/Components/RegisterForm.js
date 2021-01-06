@@ -37,7 +37,7 @@ class RegistrationForm extends Component {
     window.onbeforeunload = () => {
       if (JSON.parse(window.localStorage.getItem("state"))) {
         // last tab closed, perform cleanup.
-        localStorage.removeItem("champion");
+        localStorage.removeItem("state");
       }
     };
   }
